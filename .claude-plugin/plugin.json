@@ -1,0 +1,21 @@
+{
+  "name": "surveyninja",
+  "displayName": "SurveyNinja",
+  "version": "1.0.0",
+  "description": "Build surveys, read responses and make reports in SurveyNinja from Claude Code: the MCP server and ready-made skills.",
+  "author": {
+    "name": "SurveyNinja",
+    "email": "team@surveyninja.io",
+    "url": "https://surveyninja.io"
+  },
+  "homepage": "https://surveyninja.io/features/mcp-server",
+  "repository": "https://github.com/surveyninjaio/surveyninja-mcp",
+  "license": "MIT",
+  "keywords": ["surveyninja", "surveys", "forms", "quiz", "polls", "feedback", "mcp"],
+  "mcpServers": {
+    "surveyninja": {
+      "type": "http",
+      "url": "https://mcp.surveyninja.io/mcp/v1"
+    }
+  }
+}

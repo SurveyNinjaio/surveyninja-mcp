@@ -1,0 +1,14 @@
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "generate_filtered_report"
+      description: "Filtered report"
+      transport: "streamable_http"
+    - type: "mcp"
+      value: "get_quiz_report"
+      description: "Quiz report"
+      transport: "streamable_http"
+    - type: "mcp"
+      value: "get_quiz_summary"
+      description: "Quiz summary"
+      transport: "streamable_http"

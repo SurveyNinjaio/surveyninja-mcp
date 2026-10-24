@@ -1,0 +1,10 @@
+{
+  "name": "surveyninja",
+  "version": "1.0.0",
+  "description": "SurveyNinja surveys from Gemini CLI: build a survey from a brief, read responses, make reports. The MCP server and ready-made skills.",
+  "mcpServers": {
+    "surveyninja": {
+      "httpUrl": "https://mcp.surveyninja.io/mcp/v1"
+    }
+  }
+}

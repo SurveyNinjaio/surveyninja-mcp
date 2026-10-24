@@ -1,0 +1,6 @@
+# ~/.codex/config.toml
+# The key comes from the environment: export SURVEYNINJA_API_KEY=YOUR_API_KEY
+
+[mcp_servers.surveyninja]
+url = "https://mcp.surveyninja.io/mcp/v1"
+bearer_token_env_var = "SURVEYNINJA_API_KEY"

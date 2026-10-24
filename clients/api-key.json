@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "surveyninja": {
+      "url": "https://mcp.surveyninja.io/mcp/v1",
+      "headers": {
+        "Authorization": "Bearer YOUR_API_KEY"
+      }
+    }
+  }
+}

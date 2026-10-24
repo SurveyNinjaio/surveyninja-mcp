@@ -1,0 +1,15 @@
+{
+  "name": "surveyninja",
+  "description": "SurveyNinja: the MCP server and skills for working with surveys from Claude Code",
+  "owner": {
+    "name": "SurveyNinja",
+    "email": "team@surveyninja.io"
+  },
+  "plugins": [
+    {
+      "name": "surveyninja",
+      "source": "./",
+      "description": "The SurveyNinja MCP server and ready-made skills: from a survey brief to a report you can send"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "surveyninja": {
+      "httpUrl": "https://mcp.surveyninja.io/mcp/v1"
+    }
+  }
+}

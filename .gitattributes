@@ -1,0 +1,11 @@
+# One line ending everywhere, so the checks read the same files on every system
+* text=auto eol=lf
+*.webp binary
+*.png binary
+*.jpg binary
+# Skills and docs are text, not project code
+skills/** linguist-documentation
+docs/** linguist-documentation
+clients/** linguist-documentation
+# The scripts are tooling: without this GitHub labels the repository "Python 100%"
+scripts/** linguist-detectable=false
