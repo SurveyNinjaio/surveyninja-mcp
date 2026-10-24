@@ -1,6 +1,6 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
-  "name": "io.github.surveyninjaio/surveyninja-mcp",
+  "name": "io.surveyninja/mcp",
   "title": "SurveyNinja",
   "description": "Build surveys, read responses and make reports in SurveyNinja from an AI assistant.",
   "version": "1.0.0",
