@@ -17,3 +17,5 @@ jobs:
           python-version: "3.12"
       - name: Skills, tools, manifests and brand words
         run: python3 scripts/check.py
+      - name: Tests of the scripts
+        run: python3 -m unittest discover -s tests -v
