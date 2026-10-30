@@ -69,7 +69,7 @@ for d in skills:
 if len(skills) < 1:
     errors.append("skills/ is empty, run scripts/sync.py")
 
-for f in [ROOT / ".claude-plugin/marketplace.json", ROOT / ".claude-plugin/plugin.json", ROOT / "server.json",
+for f in [ROOT / ".claude-plugin/marketplace.json", ROOT / "plugin/.claude-plugin/plugin.json", ROOT / "server.json",
           ROOT / "gemini-extension.json", *sorted((ROOT / "clients").glob("*.json"))]:
     try:
         data = json.loads(f.read_text(encoding="utf-8"))
@@ -84,10 +84,41 @@ try:
 except Exception as e:
     errors.append(f"clients/codex.toml: {e}")
 
-versions = {json.loads((ROOT / p).read_text(encoding="utf-8"))["version"]
-            for p in (".claude-plugin/plugin.json", "gemini-extension.json", "server.json")}
-if len(versions) != 1:
+versions = set()
+for p in ("plugin/.claude-plugin/plugin.json", "gemini-extension.json", "server.json"):
+    try:
+        versions.add(json.loads((ROOT / p).read_text(encoding="utf-8"))["version"])
+    except Exception:
+        pass  # a missing or broken manifest is reported above
+if len(versions) > 1:
     errors.append(f"plugin.json, gemini-extension.json and server.json have different versions: {sorted(versions)}")
+
+# The plugin folder is what Claude Code installs and what the plugin directory reviews: only what the plugin needs.
+PLUGIN = ROOT / "plugin"
+if not (PLUGIN / ".claude-plugin/plugin.json").is_file() or not (PLUGIN / "skills").is_dir():
+    errors.append("plugin/ needs .claude-plugin/plugin.json and skills/, run scripts/sync.py")
+extra = sorted(p.name for p in PLUGIN.iterdir() if p.name not in {".claude-plugin", "skills", "README.md", "LICENSE"}) if PLUGIN.is_dir() else []
+if extra:
+    errors.append(f"plugin/ holds files the plugin does not need: {', '.join(extra)}")
+if (ROOT / ".claude-plugin/plugin.json").exists():
+    errors.append(".claude-plugin/plugin.json: the plugin manifest belongs in plugin/.claude-plugin/")
+try:
+    sources = [p.get("source") for p in json.loads((ROOT / ".claude-plugin/marketplace.json").read_text(encoding="utf-8"))["plugins"]]
+except Exception:
+    sources = []
+if sources != ["./plugin"]:
+    errors.append(f".claude-plugin/marketplace.json: the plugin source must be ./plugin, it is {sources}")
+readme_words = len(re.sub(r"```.*?```", "", (PLUGIN / "README.md").read_text(encoding="utf-8") if (PLUGIN / "README.md").exists() else "", flags=re.S).split())
+if readme_words < 40:
+    errors.append(f"plugin/README.md: the plugin directory needs at least 40 words outside code blocks, it has {readme_words}")
+if not (PLUGIN / "LICENSE").exists() or (PLUGIN / "LICENSE").read_bytes() != (ROOT / "LICENSE").read_bytes():
+    errors.append("plugin/LICENSE differs from LICENSE, run scripts/sync.py")
+# The plugin's copy of the skills is the skills/ folder without the per-skill READMEs
+def skill_files(base):
+    return {p.relative_to(base).as_posix(): p.read_bytes() for p in base.rglob("*")
+            if p.is_file() and p.parent != base and p.name != "README.md"}
+if skill_files(ROOT / "skills") != skill_files(PLUGIN / "skills"):
+    errors.append("plugin/skills differs from skills/, run scripts/sync.py")
 
 for f in sorted(ROOT.rglob("*")):
     if not f.is_file() or ".git" in f.parts or f.suffix not in {".md", ".json", ".toml", ".yaml", ".yml", ".py"}:

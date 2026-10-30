@@ -7,6 +7,7 @@ against the MCP server. This script copies them here and writes everything deriv
 - skills/<name>/      the skill files, without the site's skill.json, plus a README.md
 - skills/README.md    the catalog by group
 - skills/CHANGELOG.md the skills' changelog
+- plugin/skills/      the same skills for the Claude Code plugin, without the READMEs, and plugin/LICENSE
 - docs/tools.md       the MCP tools by section: only the tools listed in scripts/tool-sections.json
 - docs/prompts.md     starter phrases from the skills
 - README.md           the parts between <!-- generated:NAME --> and <!-- /generated:NAME -->
@@ -27,6 +28,9 @@ REPO = "https://github.com/surveyninjaio/surveyninja-mcp"
 SITE = "https://surveyninja.io"
 SERVER = "https://mcp.surveyninja.io/mcp/v1"
 PREFIX = "surveyninja-"
+# The Claude Code plugin folder. Installing the plugin copies only this folder, and the plugin directory
+# reviews everything in it, so it holds what the plugin needs and none of the repository's tooling.
+PLUGIN = ROOT / "plugin"
 
 
 def php_list(text, key):
@@ -310,6 +314,18 @@ def prompts_doc(skills, groups, labels):
     return "\n".join(out)
 
 
+def plugin_skills(source):
+    """Copy the skills into the plugin folder. Gemini CLI reads skills/ next to gemini-extension.json at the root,
+    and the plugin can only load files inside its own folder, so the two copies are kept identical."""
+    dest = PLUGIN / "skills"
+    if dest.exists():
+        shutil.rmtree(dest)
+    dest.mkdir(parents=True)
+    for d in sorted(p for p in source.iterdir() if p.is_dir()):
+        shutil.copytree(d, dest / d.name, ignore=shutil.ignore_patterns("README.md", ".DS_Store"))
+    shutil.copyfile(ROOT / "LICENSE", PLUGIN / "LICENSE")
+
+
 def replace_region(text, name, content):
     pattern = re.compile(r"(<!-- generated:" + name + r" -->\n).*?(<!-- /generated:" + name + r" -->)", re.S)
     if not pattern.search(text):
@@ -356,6 +372,7 @@ def main():
         (dest / "README.md").write_text(skill_readme(s, tools, labels.get(s["group"], s["group"])), encoding="utf-8")
 
     (target / "README.md").write_text(skills_index(skills, groups, labels), encoding="utf-8")
+    plugin_skills(target)
     shutil.copyfile(source / "resources/skills/CHANGELOG.md", target / "CHANGELOG.md")
     (ROOT / "docs").mkdir(exist_ok=True)
     (ROOT / "docs/tools.md").write_text(tools_doc(tools, sections), encoding="utf-8")

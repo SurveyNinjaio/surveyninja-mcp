@@ -95,6 +95,31 @@ class CheckTest(unittest.TestCase):
         readme.write_text(text, encoding="utf-8")
         self.assert_fails_with("the generated:glance region is empty")
 
+    def test_the_plugin_copy_of_the_skills_must_match(self):
+        copy = self.repo / "plugin/skills" / self.skill.name / "SKILL.md"
+        copy.write_text(copy.read_text(encoding="utf-8") + "\nedited only in the plugin\n", encoding="utf-8")
+        self.assert_fails_with("plugin/skills differs from skills/")
+
+    def test_a_skill_missing_from_the_plugin_fails(self):
+        shutil.rmtree(self.repo / "plugin/skills" / self.skill.name)
+        self.assert_fails_with("plugin/skills differs from skills/")
+
+    def test_tooling_inside_the_plugin_folder_fails(self):
+        (self.repo / "plugin/build.py").write_text("print('build')\n", encoding="utf-8")
+        self.assert_fails_with("plugin/ holds files the plugin does not need: build.py")
+
+    def test_the_marketplace_must_point_at_the_plugin_folder(self):
+        self.edit(self.repo / ".claude-plugin/marketplace.json", '"source": "./plugin"', '"source": "./"')
+        self.assert_fails_with("the plugin source must be ./plugin")
+
+    def test_a_manifest_at_the_repository_root_fails(self):
+        shutil.copyfile(self.repo / "plugin/.claude-plugin/plugin.json", self.repo / ".claude-plugin/plugin.json")
+        self.assert_fails_with("the plugin manifest belongs in plugin/.claude-plugin/")
+
+    def test_a_short_plugin_readme_fails(self):
+        (self.repo / "plugin/README.md").write_text("# SurveyNinja\n\nToo short.\n", encoding="utf-8")
+        self.assert_fails_with("plugin/README.md: the plugin directory needs at least 40 words")
+
 
 if __name__ == "__main__":
     unittest.main()

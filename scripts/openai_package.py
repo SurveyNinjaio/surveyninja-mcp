@@ -129,7 +129,7 @@ def mcp_config():
 
 
 def main():
-    version = json.loads((ROOT / ".claude-plugin/plugin.json").read_text(encoding="utf-8"))["version"]
+    version = json.loads((ROOT / "plugin/.claude-plugin/plugin.json").read_text(encoding="utf-8"))["version"]
     shutil.rmtree(BUILD, ignore_errors=True)
     (BUILD / "assets").mkdir(parents=True)
     (BUILD / "plugin.json").write_text(json.dumps(plugin_manifest(version), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

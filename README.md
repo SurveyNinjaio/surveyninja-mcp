@@ -45,7 +45,8 @@ The plugin adds the MCP server and every skill at once:
 /plugin install surveyninja@surveyninja
 ```
 
-Then type `/mcp`, select the SurveyNinja server and sign in. Only the server, without the skills:
+Then type `/mcp`, select the SurveyNinja server and sign in. The plugin is the [`plugin/`](plugin/) folder: the
+server and a copy of the skills, nothing else. Only the server, without the skills:
 
 ```bash
 claude mcp add --transport http surveyninja https://mcp.surveyninja.io/mcp/v1
@@ -274,7 +275,7 @@ Code, `.agents/skills/` for Codex and Cursor, `.gemini/skills/` for Gemini CLI. 
 
 - With **Allow access** the assistant works in the one workspace you chose and loses access when you leave it or
   remove the connector. An **API key** stops working the moment you delete it in **Settings → API / MCP**.
-- Tools that cannot be undone, such as deleting surveys or responses, carry the `destructiveHint` annotation, so
+- Tools that delete or overwrite data, such as deleting responses, carry the `destructiveHint` annotation, so
   your client can ask before it calls them. Read what the assistant is about to do before you confirm.
 - Every skill has a “What not to do” section: things the assistant must not do without your word.
 - There are no secrets in this repository. Configs use `YOUR_API_KEY` as a placeholder. Found something that looks

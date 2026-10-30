@@ -184,6 +184,12 @@ class RunTest(unittest.TestCase):
         self.assertTrue((second / "references/notes.md").exists())
         self.assertEqual("# Skills changelog\n", self.read("skills/CHANGELOG.md"))
 
+        plugin = sorted(p.name for p in (self.repo / "plugin/skills").iterdir())
+        self.assertEqual(["surveyninja-first", "surveyninja-second", "surveyninja-third"], plugin, "stale skills are gone")
+        self.assertTrue((self.repo / "plugin/skills/surveyninja-second/references/notes.md").exists())
+        self.assertEqual([], list((self.repo / "plugin/skills").rglob("README.md")), "the plugin copy has no READMEs")
+        self.assertEqual(self.read("LICENSE"), self.read("plugin/LICENSE"))
+
         readme = self.read("skills/surveyninja-second/README.md")
         self.assertIn("# Skill second", readme)
         self.assertIn("| `surveyninja-second` | 1.2.0 | 2 | [ZIP](https://surveyninja.io/skills/second.zip) |", readme)

@@ -1,7 +1,7 @@
 {
   "name": "surveyninja",
   "displayName": "SurveyNinja",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Build surveys, read responses and make reports in SurveyNinja from Claude Code: the MCP server and ready-made skills.",
   "author": {
     "name": "SurveyNinja",
