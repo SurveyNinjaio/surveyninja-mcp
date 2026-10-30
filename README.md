@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="assets/banner.webp" alt="SurveyNinja MCP: surveys, responses and reports from your AI assistant" width="100%">
-</p>
+![SurveyNinja MCP: surveys, responses and reports from your AI assistant](assets/banner.webp)
 
 <p align="center">
   <a href="#quick-start"><b>Quick start</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#skills"><b>Skills</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="docs/tools.md"><b>Tools</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="docs/prompts.md"><b>What to ask</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="docs/connect.md"><b>Connecting</b></a>
@@ -142,16 +140,16 @@ If Gemini CLI does not offer to sign in by itself, run `/mcp auth surveyninja`.
 
 <br>
 
-With an API key. Create one in SurveyNinja under **Settings → [API / MCP](https://app.surveyninja.io/account/api)**,
-then add the server to `~/.codex/config.toml`:
+Add the server to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.surveyninja]
 url = "https://mcp.surveyninja.io/mcp/v1"
-bearer_token_env_var = "SURVEYNINJA_API_KEY"
 ```
 
-Codex reads the key from the environment: `export SURVEYNINJA_API_KEY=YOUR_API_KEY`.
+Then run `codex mcp login surveyninja`: SurveyNinja opens in the browser, and you click **Allow access**. No key goes
+into the file. In the Codex app, add the server under **Settings → MCP servers** as Streamable HTTP and select
+**Authenticate**.
 
 </details>
 

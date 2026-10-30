@@ -86,12 +86,14 @@ does not offer to sign in by itself, run `/mcp auth surveyninja`.
 
 ### Codex
 
-Add [`clients/codex.toml`](../clients/codex.toml) to `~/.codex/config.toml` and pass an API key through the
-environment:
+Add [`clients/codex.toml`](../clients/codex.toml) to `~/.codex/config.toml`, then sign in:
 
 ```bash
-export SURVEYNINJA_API_KEY=YOUR_API_KEY
+codex mcp login surveyninja
 ```
+
+SurveyNinja opens in the browser; choose the workspace and click **Allow access**. In the Codex app, add the server
+under **Settings → MCP servers** as Streamable HTTP and select **Authenticate**.
 
 ### Other clients
 

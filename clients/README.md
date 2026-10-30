@@ -10,7 +10,7 @@ SurveyNinja for you to sign in and click **Allow access**: no key goes into the 
 | [`cursor.json`](cursor.json) | `~/.cursor/mcp.json`, or `.cursor/mcp.json` in a project | Allow access |
 | [`vscode.json`](vscode.json) | `.vscode/mcp.json` in a project | Allow access |
 | [`gemini.json`](gemini.json) | `~/.gemini/settings.json` | Allow access |
-| [`codex.toml`](codex.toml) | `~/.codex/config.toml` | API key from `SURVEYNINJA_API_KEY` |
+| [`codex.toml`](codex.toml) | `~/.codex/config.toml` | Allow access, after `codex mcp login surveyninja` |
 | [`api-key.json`](api-key.json) | any client that takes `mcpServers` with headers | API key: replace `YOUR_API_KEY` |
 
 Claude Code takes one command, or the plugin with the skills:
