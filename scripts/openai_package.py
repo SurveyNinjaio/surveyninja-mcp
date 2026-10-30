@@ -15,9 +15,6 @@ BUILD = DIST / "openai"
 ZIP = DIST / "surveyninja-openai.zip"
 SERVER = "https://mcp.surveyninja.io/mcp/v1"
 
-# Webhook tools are not offered over OAuth, which is how ChatGPT connects.
-EXCLUDED_SKILLS = {"surveyninja-webhook-setup"}
-
 LONG_DESCRIPTION = """SurveyNinja is an online survey builder. This plugin connects ChatGPT to your SurveyNinja account: build a survey from a short description, a template or from scratch, check it before launch, publish it, then read the responses and reports and export them.
 
 Things to ask:
@@ -38,7 +35,7 @@ Limitations:
 - You need a SurveyNinja account. You sign in with SurveyNinja and choose one workspace; ChatGPT gets the same rights you have there and nothing more, and loses access when you leave the workspace or disconnect.
 - Some features, such as the AI report, depend on the workspace plan.
 - Up to 180 requests per minute per user. Links to exported files work for one hour.
-- Webhooks and integrations with other services are set up in the SurveyNinja dashboard."""
+- Webhooks and new email recipients are set up in the SurveyNinja app: on this connection ChatGPT does not send responses to a new outside address. It then checks them and switches them on."""
 
 POSITIVE = [
     {
@@ -139,7 +136,7 @@ def main():
     (BUILD / "mcp.json").write_text(json.dumps(mcp_config(), indent=2) + "\n", encoding="utf-8")
     shutil.copy(ROOT / "assets/logo.png", BUILD / "assets/logo.png")
 
-    skills = sorted(p for p in (ROOT / "skills").iterdir() if p.is_dir() and p.name not in EXCLUDED_SKILLS)
+    skills = sorted(p for p in (ROOT / "skills").iterdir() if p.is_dir())
     for d in skills:
         # README.md is the human install page of a skill; the package needs only what the model reads.
         shutil.copytree(d, BUILD / "skills" / d.name, ignore=shutil.ignore_patterns("README.md"))

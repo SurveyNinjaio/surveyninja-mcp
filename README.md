@@ -9,7 +9,7 @@
 <p align="center">
 <!-- generated:badges -->
   <a href="skills/"><img alt="Skills: 25" src="https://img.shields.io/badge/skills-25-8b5cf6?style=flat-square"></a>
-  <a href="docs/tools.md"><img alt="Tools: 160+" src="https://img.shields.io/badge/tools-160%2B-8b5cf6?style=flat-square"></a>
+  <a href="docs/tools.md"><img alt="Tools: 173+" src="https://img.shields.io/badge/tools-173%2B-8b5cf6?style=flat-square"></a>
 <!-- /generated:badges -->
   <img alt="MCP: Streamable HTTP" src="https://img.shields.io/badge/MCP-Streamable%20HTTP-24292f?style=flat-square">
   <img alt="Free plan included" src="https://img.shields.io/badge/plans-Free%20included-24292f?style=flat-square">
@@ -179,7 +179,7 @@ The same configs as files are in [`clients/`](clients/), and every step with tro
 |---|---|
 | **Server** | `https://mcp.surveyninja.io/mcp/v1`, Streamable HTTP, nothing to deploy on your side |
 | **Sign-in** | **Allow access** (OAuth): one workspace you choose, the assistant renews access by itself. Or an **API key** from **Settings → API / MCP**: every workspace where you are the owner or a member |
-| **Tools** | 160+: 57 only read, 25 delete or overwrite data and are marked. [Full list](docs/tools.md) |
+| **Tools** | 173+: 62 only read, 29 delete or overwrite data and are marked. [Full list](docs/tools.md) |
 | **Permissions** | Yours: the assistant can do what your role and your plan allow, nothing more |
 | **Plans** | Every plan, Free included |
 | **Limits** | 180 requests per minute per user; links to exported files work for one hour |

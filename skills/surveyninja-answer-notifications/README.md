@@ -6,7 +6,7 @@
 
 | Skill | Version | Tools | Download | Page |
 |---|---|:-:|:-:|:-:|
-| `surveyninja-answer-notifications` | 1.0.1 | 12 | [ZIP](https://surveyninja.io/skills/answer-notifications.zip) | [surveyninja.io](https://surveyninja.io/skills/answer-notifications) |
+| `surveyninja-answer-notifications` | 1.1.0 | 11 | [ZIP](https://surveyninja.io/skills/answer-notifications.zip) | [surveyninja.io](https://surveyninja.io/skills/answer-notifications) |
 
 ## What it does
 
@@ -54,7 +54,6 @@
 | Tool | What it does | Kind |
 |---|---|---|
 | `add_quiz_email_recipient` | Add answer copy recipient | write |
-| `confirm_quiz_email_recipient` | Confirm recipient address | write |
 | `delete_quiz_email_recipient` | Delete answer copy recipient | destructive |
 | `get_integration_logs` | Messenger delivery log | read |
 | `get_quiz_email_settings` | Quiz email settings | read |
@@ -78,7 +77,7 @@ By email, as a letter with the response, and in a Telegram chat or group. The re
 <details>
 <summary><b>Why do emails not arrive when everything looks set up?</b></summary>
 
-Most often the address was never confirmed. A letter with a code goes to it, and nothing is sent until it is confirmed, even though the setting looks complete. The skill checks this first.
+Most often the address was never confirmed. A letter with a code goes to it, and nothing is sent until it is confirmed, even though the setting looks complete. The skill checks this first. Connected by API key, the assistant enters the code you give it. In assistant apps connected with Allow access, you enter it in the app: the survey's Notifications tab, click the address shown in red.
 
 </details>
 

@@ -58,7 +58,9 @@
     "manage_quiz_qr_code",
     "manage_quiz_passwords",
     "export_quiz_print",
-    "manage_quiz_unique_links"
+    "manage_quiz_unique_links",
+    "get_share_links",
+    "set_share_link_active"
   ],
   "Promo codes": [
     "create_promocode_group",
@@ -80,6 +82,7 @@
   ],
   "Answers": [
     "get_quiz_answers",
+    "count_quiz_answers",
     "get_answer_extra_field_values",
     "tag_answer",
     "get_answer_tags",
@@ -107,7 +110,11 @@
     "get_workspace_report_appearance",
     "create_report_appearance_preset",
     "delete_report_appearance_preset",
-    "update_workspace_report_palette"
+    "update_workspace_report_palette",
+    "get_quiz_visits",
+    "get_quiz_visit_segments",
+    "reset_quiz_visits",
+    "manage_quiz_filter_presets"
   ],
   "Exports": [
     "export_answers_csv",
@@ -127,16 +134,20 @@
     "delete_quiz_email_recipient",
     "save_quiz_email_template",
     "set_quiz_email_questions",
-    "manage_workspace_smtp"
+    "manage_workspace_smtp",
+    "add_quiz_email_team_member",
+    "save_quiz_email_notifications",
+    "send_quiz_email_test",
+    "get_quiz_email_log",
+    "resend_quiz_email_log"
   ],
   "Integrations and webhooks": [
     "get_quiz_integrations",
     "get_integration_logs",
     "resend_integration_logs",
-    "manage_quiz_crm",
-    "get_quiz_crm_fields",
     "manage_quiz_google_sheets",
     "manage_quiz_messenger",
+    "get_quiz_messenger_link",
     "manage_quiz_zapier",
     "manage_quiz_analytics",
     "get_quiz_webhooks",
@@ -163,7 +174,9 @@
     "get_workspace_member_access",
     "get_workspace_roles",
     "save_workspace_role",
-    "delete_workspace_role"
+    "delete_workspace_role",
+    "set_workspace_member_blocked",
+    "set_workspace_member_api_access"
   ],
   "Account and workspace": [
     "get_user_me",
@@ -171,6 +184,7 @@
     "manage_user_sessions",
     "get_workspace_list",
     "get_workspace_details",
+    "get_workspace_activity",
     "update_workspace_branding",
     "upload_workspace_logo",
     "delete_workspace_logo",
@@ -182,10 +196,9 @@
     "get_workspace_storage_usage",
     "verify_workspace_storage"
   ],
-  "Plan, payments and partners": [
+  "Plan and partners": [
     "get_workspace_tariff",
     "get_tariff_list",
-    "manage_quiz_payment",
     "get_partner_program",
     "manage_partner_source",
     "get_respondent_campaigns"

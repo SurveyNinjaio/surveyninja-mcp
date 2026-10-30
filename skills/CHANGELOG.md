@@ -7,6 +7,18 @@ out of date, so versions and dates live here. A skill's version is also on its p
 - **Second number**: a new step, rule or reference. Worth updating.
 - **First number**: the skill was rewritten or renamed. Remove the old file.
 
+## 2026-10-30
+
+Claude, ChatGPT and other assistant apps connect to SurveyNinja with Allow access. On that connection the
+server no longer offers the tools that send responses to an outside address: creating and changing a webhook,
+and confirming a new email recipient. Text inside a respondent's answer must not be able to send everyone's
+responses elsewhere. A connection by API key keeps them. The skills now say what to do on each connection.
+
+| Version | Skills | What changed |
+|---|---|---|
+| 1.1.0 | `webhook-setup` | On Allow access the person creates or edits the webhook in the app, with the values the skill prepares; the skill then switches it on and checks delivery |
+| 1.1.0 | `answer-notifications`, `integration-triage` | On Allow access the person enters the email confirmation code in the app, on the survey's Notifications tab |
+
 ## 2026-10-24
 
 Every skill's `description` in the `SKILL.md` header is now in double quotes. In 20 skills it held a colon

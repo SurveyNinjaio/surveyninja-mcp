@@ -65,7 +65,7 @@ side. Deleting the Zapier integration removes its subscriptions: never do it as 
 
 | What `get_quiz_email_settings` shows | What happened | What to do |
 |---|---|---|
-| address not `checked` | the address was added but never confirmed | ask for the code from the letter, `confirm_quiz_email_recipient`; "resend_code" if it is lost |
+| address not `checked` | the address was added but never confirmed | by API key: ask for the code from the letter, `confirm_quiz_email_recipient`, "resend_code" if it is lost; on "Allow access": the person clicks the red address on the survey's Notifications tab and enters the code there |
 | address switched off | the recipient was turned off | ask, then `toggle_quiz_email_recipient` |
 | owner letter off | notifications are switched off for the survey | ask, then `toggle_quiz_email` |
 | everything on and confirmed | delivery works on our side | the person checks spam and mail filters |

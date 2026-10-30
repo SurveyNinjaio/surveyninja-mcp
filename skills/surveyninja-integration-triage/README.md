@@ -6,7 +6,7 @@
 
 | Skill | Version | Tools | Download | Page |
 |---|---|:-:|:-:|:-:|
-| `surveyninja-integration-triage` | 1.0.2 | 15 | [ZIP](https://surveyninja.io/skills/integration-triage.zip) | [surveyninja.io](https://surveyninja.io/skills/integration-triage) |
+| `surveyninja-integration-triage` | 1.1.0 | 14 | [ZIP](https://surveyninja.io/skills/integration-triage.zip) | [surveyninja.io](https://surveyninja.io/skills/integration-triage) |
 
 ## What it does
 
@@ -54,7 +54,6 @@
 
 | Tool | What it does | Kind |
 |---|---|---|
-| `confirm_quiz_email_recipient` | Confirm recipient address | write |
 | `get_integration_logs` | Messenger delivery log | read |
 | `get_quiz_email_settings` | Quiz email settings | read |
 | `get_quiz_integrations` | Quiz integration state | read |

@@ -1,10 +1,6 @@
 dependencies:
   tools:
     - type: "mcp"
-      value: "create_quiz_webhook"
-      description: "Create webhook"
-      transport: "streamable_http"
-    - type: "mcp"
       value: "delete_quiz_webhook"
       description: "Delete webhook"
       transport: "streamable_http"
@@ -39,8 +35,4 @@ dependencies:
     - type: "mcp"
       value: "toggle_quiz_webhook"
       description: "Webhook on and off"
-      transport: "streamable_http"
-    - type: "mcp"
-      value: "update_quiz_webhook"
-      description: "Update webhook"
       transport: "streamable_http"

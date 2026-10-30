@@ -49,13 +49,29 @@ Question names and identifiers come from `get_quiz_structure`.
 
 ## 4. Create and switch on
 
-`create_quiz_webhook`: a title (for the person, to tell webhooks apart), address,
-method, fields (`body`), renaming (`body_naming`) and headers (`headers`, where the
-receiver's access keys go).
+Who creates the webhook depends on how the assistant is connected. A webhook sends
+every response to an outside address, so on an "Allow access" connection (the
+sign-in Claude, ChatGPT and other assistant apps use) the server does not offer
+`create_quiz_webhook` and `update_quiz_webhook`: text inside a respondent's answer
+must not be able to send everyone's responses elsewhere. If these tools are not in
+your list, that is the reason. Do not look for a way around it.
 
-**Unfinished responses**: `incomplete` and `hours`. By default only finished ones
-are sent. If abandoned ones are wanted too, send them with a delay of 1, 6, 12 or 24
-hours; otherwise a person who comes back to finish arrives twice.
+**Connected by API key**: `create_quiz_webhook` with a title (for the person, to
+tell webhooks apart), address, method, fields (`body`), renaming (`body_naming`) and
+headers (`headers`, where the receiver's access keys go).
+
+**Connected with "Allow access"**: the person creates it in the app, and you give
+them the values from step 3 ready to enter. Open the survey, the Integrations tab,
+Webhook, then Create a Webhook. Name of the Webhook is the title, Call Back URL the
+address, Request Type the method. Custom Header holds the receiver's keys, which the
+person types in themselves. In Elements every question is selected; a click leaves
+one out. Parameter names renames the fields. Then Save. `get_quiz_webhooks` shows
+the new webhook, and from here the two ways are the same.
+
+**Unfinished responses**: `incomplete` and `hours`, or Send incomplete responses and
+Send every in the app. By default only finished ones are sent. If abandoned ones are
+wanted too, send them with a delay of 1, 6, 12 or 24 hours; otherwise a person who
+comes back to finish arrives twice.
 
 **A new webhook is created switched off.** Tell the person, and once they confirm
 the receiver is ready, turn it on with `toggle_quiz_webhook`.
@@ -76,7 +92,9 @@ error: the same thing will happen again. Once it is fixed, resend one entry by
 - Fix the address or fields with `update_quiz_webhook`. Fields you do not pass keep
   their values, so send only what changes. **`headers` is replaced as a whole
   list**, and header values come back masked: to change one header, ask the person
-  for the others again, or leave `headers` out entirely.
+  for the others again, or leave `headers` out entirely. On "Allow access" the
+  person changes it in the app: Edit in the menu next to the webhook in the
+  Webhooks list.
 - A webhook that switched itself off after failures comes back on with
   `toggle_quiz_webhook`, once the receiver is fixed.
 - To pause while they fix their side, switch it off with `toggle_quiz_webhook`

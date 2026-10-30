@@ -49,7 +49,7 @@ class ManifestTest(unittest.TestCase):
 
 
 class BuildTest(unittest.TestCase):
-    def test_build_writes_the_zip_without_excluded_skills_and_readmes(self):
+    def test_build_writes_the_zip_with_every_skill_and_no_readmes(self):
         with tempfile.TemporaryDirectory() as tmp:
             dist = Path(tmp)
             with mock.patch.multiple(openai_package, DIST=dist, BUILD=dist / "openai", ZIP=dist / "p.zip"):
@@ -59,9 +59,8 @@ class BuildTest(unittest.TestCase):
         self.assertIn("mcp.json", names)
         self.assertIn("assets/logo.png", names)
         self.assertFalse(any(n.endswith("README.md") for n in names))
-        for skill in openai_package.EXCLUDED_SKILLS:
-            self.assertFalse(any(n.startswith(f"skills/{skill}/") for n in names))
         skills = {n.split("/")[1] for n in names if n.startswith("skills/")}
+        self.assertEqual(skills, {p.name for p in (ROOT / "skills").iterdir() if p.is_dir()})
         for skill in skills:
             self.assertIn(f"skills/{skill}/SKILL.md", names)
 

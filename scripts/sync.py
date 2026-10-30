@@ -251,6 +251,7 @@ def skills_index(skills, groups, labels):
 def tools_doc(tools, sections):
     reads = sum(1 for t in tools.values() if t.get("read_only"))
     destructive = sum(1 for t in tools.values() if t.get("destructive"))
+    key_only = sum(1 for t in tools.values() if t.get("api_key_only"))
     sections = {name: [t for t in names if t in tools] for name, names in sections.items()}
     sections = {name: names for name, names in sections.items() if names}
     out = [
@@ -262,6 +263,17 @@ def tools_doc(tools, sections):
         "`destructiveHint` annotation, so your client can ask before it calls them. The rest create or change data, and",
         "some act at once: publishing a survey or inviting a member, for example.",
         "",
+    ]
+    if key_only:
+        out += [
+            f"{key_only} {'tool works' if key_only == 1 else 'tools work'} only when you connect with an API key and"
+            " are marked *API key only*. An **Allow access**",
+            "connection, the one Claude, ChatGPT and other assistant apps use, does not list them: account settings, and",
+            "anything that sends responses to a new outside address (creating or changing a webhook, confirming a new email",
+            "recipient). Those are set up in the app.",
+            "",
+        ]
+    out += [
         "Your client gets the server's own list with `tools/list` when it connects. Tool names say `quiz` where the app",
         "says survey: they mean the same thing.",
         "",
@@ -271,7 +283,8 @@ def tools_doc(tools, sections):
     ]
     for name, names in sections.items():
         out += [f"## {name}", "", "| Tool | What it does | Kind |", "|---|---|---|"]
-        out += [f"| `{t}` | {cell(tools[t]['title'])} | {kind(tools[t])} |" for t in names]
+        out += [f"| `{t}` | {cell(tools[t]['title'])} | {kind(tools[t])}{', *API key only*' if tools[t].get('api_key_only') else ''} |"
+                for t in names]
         out.append("")
     return "\n".join(out)
 

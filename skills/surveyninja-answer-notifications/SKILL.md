@@ -32,11 +32,19 @@ ignore them.
   set as `client_source` in `save_quiz_email_template`.
 - Add a recipient with `add_quiz_email_recipient`. The number of addresses depends
   on the plan.
-- **The address must be confirmed.** A letter with a code goes to it, and until it
-  is confirmed nothing is delivered there, while the setting still looks complete.
-  This is the single most common cause of "we set it up and get nothing". You
-  cannot read that mailbox: ask the person for the code and confirm with
-  `confirm_quiz_email_recipient`; its "resend_code" action sends a new one.
+- **The address must be confirmed.** A letter with a 4-digit code goes to it, and
+  until it is confirmed nothing is delivered there, while the setting still looks
+  complete. This is the single most common cause of "we set it up and get nothing".
+  You cannot read that mailbox. An address already confirmed in another survey of
+  the workspace needs no code.
+  - Connected by API key: ask the person for the code and confirm with
+    `confirm_quiz_email_recipient`; its "resend_code" action sends a new one.
+  - Connected with "Allow access" (the sign-in Claude, ChatGPT and other assistant
+    apps use), that tool is not offered, so that text in a respondent's answer
+    cannot add someone else's address as a recipient. The person enters the code in
+    the app: the survey's Notifications tab, Added addresses, click the address
+    shown in red. A new code is there too, under "get the code again". Do not ask
+    for the code in the chat then: you have nowhere to enter it.
 - Switch one address on or off with `toggle_quiz_email_recipient`; remove one with
   `delete_quiz_email_recipient`.
 - What goes into the letter: `set_quiz_email_questions` lists the questions to

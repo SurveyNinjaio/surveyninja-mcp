@@ -127,6 +127,15 @@ class HelpersTest(unittest.TestCase):
         self.assertIn("[Danger zone](#danger-zone) <sub>1</sub>", doc)
         self.assertNotIn("gone_tool", doc)
         self.assertNotIn("## Empty", doc)
+        self.assertNotIn("API key only", doc)
+
+    def test_tools_doc_marks_api_key_only_tools(self):
+        tools = {"get_quiz_list": {"title": "List surveys", "read_only": True},
+                 "create_quiz_webhook": {"title": "Create webhook", "api_key_only": True}}
+        doc = sync.tools_doc(tools, {"Webhooks": ["get_quiz_list", "create_quiz_webhook"]})
+        self.assertIn("1 tool works only when you connect with an API key", doc)
+        self.assertIn("| `create_quiz_webhook` | Create webhook | write, *API key only* |", doc)
+        self.assertIn("| `get_quiz_list` | List surveys | read |", doc)
 
 
 class RunTest(unittest.TestCase):

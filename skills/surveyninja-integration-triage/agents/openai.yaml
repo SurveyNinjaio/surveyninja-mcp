@@ -1,10 +1,6 @@
 dependencies:
   tools:
     - type: "mcp"
-      value: "confirm_quiz_email_recipient"
-      description: "Confirm recipient address"
-      transport: "streamable_http"
-    - type: "mcp"
       value: "get_integration_logs"
       description: "Messenger delivery log"
       transport: "streamable_http"

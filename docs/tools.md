@@ -2,14 +2,19 @@
 
 # SurveyNinja MCP tools
 
-160 tools by section. 57 only read. 25 delete or overwrite data and carry the
+173 tools by section. 62 only read. 29 delete or overwrite data and carry the
 `destructiveHint` annotation, so your client can ask before it calls them. The rest create or change data, and
 some act at once: publishing a survey or inviting a member, for example.
+
+7 tools work only when you connect with an API key and are marked *API key only*. An **Allow access**
+connection, the one Claude, ChatGPT and other assistant apps use, does not list them: account settings, and
+anything that sends responses to a new outside address (creating or changing a webhook, confirming a new email
+recipient). Those are set up in the app.
 
 Your client gets the server's own list with `tools/list` when it connects. Tool names say `quiz` where the app
 says survey: they mean the same thing.
 
-[Surveys](#surveys) <sub>18</sub> &nbsp;|&nbsp; [Questions and logic](#questions-and-logic) <sub>10</sub> &nbsp;|&nbsp; [Variables and hidden fields](#variables-and-hidden-fields) <sub>12</sub> &nbsp;|&nbsp; [Themes](#themes) <sub>6</sub> &nbsp;|&nbsp; [Sharing](#sharing) <sub>5</sub> &nbsp;|&nbsp; [Promo codes](#promo-codes) <sub>6</sub> &nbsp;|&nbsp; [Online booking](#online-booking) <sub>8</sub> &nbsp;|&nbsp; [Answers](#answers) <sub>10</sub> &nbsp;|&nbsp; [Reports](#reports) <sub>17</sub> &nbsp;|&nbsp; [Exports](#exports) <sub>7</sub> &nbsp;|&nbsp; [Notifications and email](#notifications-and-email) <sub>9</sub> &nbsp;|&nbsp; [Integrations and webhooks](#integrations-and-webhooks) <sub>16</sub> &nbsp;|&nbsp; [Folders](#folders) <sub>4</sub> &nbsp;|&nbsp; [Team and roles](#team-and-roles) <sub>10</sub> &nbsp;|&nbsp; [Account and workspace](#account-and-workspace) <sub>15</sub> &nbsp;|&nbsp; [Plan, payments and partners](#plan-payments-and-partners) <sub>6</sub> &nbsp;|&nbsp; [Email campaigns](#email-campaigns) <sub>1</sub>
+[Surveys](#surveys) <sub>18</sub> &nbsp;|&nbsp; [Questions and logic](#questions-and-logic) <sub>10</sub> &nbsp;|&nbsp; [Variables and hidden fields](#variables-and-hidden-fields) <sub>12</sub> &nbsp;|&nbsp; [Themes](#themes) <sub>6</sub> &nbsp;|&nbsp; [Sharing](#sharing) <sub>7</sub> &nbsp;|&nbsp; [Promo codes](#promo-codes) <sub>6</sub> &nbsp;|&nbsp; [Online booking](#online-booking) <sub>8</sub> &nbsp;|&nbsp; [Answers](#answers) <sub>11</sub> &nbsp;|&nbsp; [Reports](#reports) <sub>21</sub> &nbsp;|&nbsp; [Exports](#exports) <sub>7</sub> &nbsp;|&nbsp; [Notifications and email](#notifications-and-email) <sub>14</sub> &nbsp;|&nbsp; [Integrations and webhooks](#integrations-and-webhooks) <sub>15</sub> &nbsp;|&nbsp; [Folders](#folders) <sub>4</sub> &nbsp;|&nbsp; [Team and roles](#team-and-roles) <sub>12</sub> &nbsp;|&nbsp; [Account and workspace](#account-and-workspace) <sub>16</sub> &nbsp;|&nbsp; [Plan and partners](#plan-and-partners) <sub>5</sub> &nbsp;|&nbsp; [Email campaigns](#email-campaigns) <sub>1</sub>
 
 ## Surveys
 
@@ -86,6 +91,8 @@ says survey: they mean the same thing.
 | `manage_quiz_passwords` | Passwords for a closed quiz | destructive |
 | `export_quiz_print` | Quiz print version | read |
 | `manage_quiz_unique_links` | Unique quiz links | destructive |
+| `get_share_links` | List public links | read |
+| `set_share_link_active` | Disable or enable a public link | destructive |
 
 ## Promo codes
 
@@ -116,6 +123,7 @@ says survey: they mean the same thing.
 | Tool | What it does | Kind |
 |---|---|---|
 | `get_quiz_answers` | Quiz answers | read |
+| `count_quiz_answers` | How many answers match | write |
 | `get_answer_extra_field_values` | Link label values | read |
 | `tag_answer` | Tags on an answer | write |
 | `get_answer_tags` | Account answer tags | read |
@@ -147,6 +155,10 @@ says survey: they mean the same thing.
 | `create_report_appearance_preset` | Create report appearance preset | write |
 | `delete_report_appearance_preset` | Delete report appearance preset | destructive |
 | `update_workspace_report_palette` | Workspace report palette | write |
+| `get_quiz_visits` | Visit log | read |
+| `get_quiz_visit_segments` | Visits by source, device, browser or country | read |
+| `reset_quiz_visits` | Reset visits | destructive |
+| `manage_quiz_filter_presets` | Saved filters | write |
 
 ## Exports
 
@@ -167,12 +179,17 @@ says survey: they mean the same thing.
 | `get_quiz_email_settings` | Quiz email settings | read |
 | `toggle_quiz_email` | Quiz emails on and off | write |
 | `add_quiz_email_recipient` | Add answer copy recipient | write |
-| `confirm_quiz_email_recipient` | Confirm recipient address | write |
+| `confirm_quiz_email_recipient` | Confirm recipient address | write, *API key only* |
 | `toggle_quiz_email_recipient` | Recipient on and off | write |
 | `delete_quiz_email_recipient` | Delete answer copy recipient | destructive |
 | `save_quiz_email_template` | Quiz email template | write |
 | `set_quiz_email_questions` | Questions included in the email | write |
 | `manage_workspace_smtp` | Custom mail service | write |
+| `add_quiz_email_team_member` | Account member as a recipient | write |
+| `save_quiz_email_notifications` | Email rules, digest and events | write |
+| `send_quiz_email_test` | Send me a sample letter | write |
+| `get_quiz_email_log` | Quiz email log | read |
+| `resend_quiz_email_log` | Send the letter again | write |
 
 ## Integrations and webhooks
 
@@ -181,15 +198,14 @@ says survey: they mean the same thing.
 | `get_quiz_integrations` | Quiz integration state | read |
 | `get_integration_logs` | Messenger delivery log | read |
 | `resend_integration_logs` | Resend to messenger | write |
-| `manage_quiz_crm` | Sending answers to CRM | write |
-| `get_quiz_crm_fields` | CRM fields and current mapping | read |
 | `manage_quiz_google_sheets` | Google Sheets export | destructive |
 | `manage_quiz_messenger` | Telegram notifications | destructive |
+| `get_quiz_messenger_link` | Bot connection link | read |
 | `manage_quiz_zapier` | Sending to Zapier | write |
 | `manage_quiz_analytics` | Analytics counters and pixels | write |
 | `get_quiz_webhooks` | Quiz webhooks | read |
-| `create_quiz_webhook` | Create webhook | write |
-| `update_quiz_webhook` | Update webhook | write |
+| `create_quiz_webhook` | Create webhook | write, *API key only* |
+| `update_quiz_webhook` | Update webhook | write, *API key only* |
 | `toggle_quiz_webhook` | Webhook on and off | write |
 | `delete_quiz_webhook` | Delete webhook | destructive |
 | `get_quiz_webhook_logs` | Webhook delivery log | read |
@@ -218,16 +234,19 @@ says survey: they mean the same thing.
 | `get_workspace_roles` | Member roles | read |
 | `save_workspace_role` | Member role | write |
 | `delete_workspace_role` | Delete member role | destructive |
+| `set_workspace_member_blocked` | Close or restore member access | destructive |
+| `set_workspace_member_api_access` | Member API access | destructive |
 
 ## Account and workspace
 
 | Tool | What it does | Kind |
 |---|---|---|
 | `get_user_me` | My profile | read |
-| `update_user_profile` | Update my profile | write |
-| `manage_user_sessions` | Account sessions | destructive |
+| `update_user_profile` | Update my profile | write, *API key only* |
+| `manage_user_sessions` | Account sessions | destructive, *API key only* |
 | `get_workspace_list` | Workspace list | read |
 | `get_workspace_details` | Workspace details | read |
+| `get_workspace_activity` | Account activity log | read |
 | `update_workspace_branding` | Workspace logo and copyright | write |
 | `upload_workspace_logo` | Upload workspace logo | write |
 | `delete_workspace_logo` | Delete workspace logo | destructive |
@@ -239,15 +258,14 @@ says survey: they mean the same thing.
 | `get_workspace_storage_usage` | Storage usage | read |
 | `verify_workspace_storage` | Verify custom storage | write |
 
-## Plan, payments and partners
+## Plan and partners
 
 | Tool | What it does | Kind |
 |---|---|---|
 | `get_workspace_tariff` | Workspace plan | read |
 | `get_tariff_list` | Plan list | read |
-| `manage_quiz_payment` | Payment inside a quiz | write |
-| `get_partner_program` | Partner program | read |
-| `manage_partner_source` | Partner source labels | write |
+| `get_partner_program` | Partner program | read, *API key only* |
+| `manage_partner_source` | Partner source labels | write, *API key only* |
 | `get_respondent_campaigns` | Ordered respondents | read |
 
 ## Email campaigns

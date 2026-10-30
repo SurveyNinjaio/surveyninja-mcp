@@ -6,7 +6,7 @@
 
 | Skill | Version | Tools | Download | Page |
 |---|---|:-:|:-:|:-:|
-| `surveyninja-webhook-setup` | 1.0.2 | 11 | [ZIP](https://surveyninja.io/skills/webhook-setup.zip) | [surveyninja.io](https://surveyninja.io/skills/webhook-setup) |
+| `surveyninja-webhook-setup` | 1.1.0 | 9 | [ZIP](https://surveyninja.io/skills/webhook-setup.zip) | [surveyninja.io](https://surveyninja.io/skills/webhook-setup) |
 
 ## What it does
 
@@ -55,7 +55,6 @@
 
 | Tool | What it does | Kind |
 |---|---|---|
-| `create_quiz_webhook` | Create webhook | write |
 | `delete_quiz_webhook` | Delete webhook | destructive |
 | `get_quiz_structure` | Quiz structure | read |
 | `get_quiz_webhook_logs` | Webhook delivery log | read |
@@ -65,7 +64,6 @@
 | `manage_quiz_zapier` | Sending to Zapier | write |
 | `resend_quiz_webhook_log` | Resend webhook | write |
 | `toggle_quiz_webhook` | Webhook on and off | write |
-| `update_quiz_webhook` | Update webhook | write |
 
 ## Questions
 
@@ -77,9 +75,9 @@ The skill checks this first, because webhooks are not on every plan. If they are
 </details>
 
 <details>
-<summary><b>What do I need to tell it?</b></summary>
+<summary><b>What do I need to tell it, and who creates the webhook?</b></summary>
 
-Four things: the address (a public http or https one), the method (almost always POST), which fields to send and what your system calls them.
+Four things: the address (a public http or https one), the method (almost always POST), which fields to send and what your system calls them. Connected by API key, the assistant creates the webhook. In Claude, ChatGPT and other assistant apps connected with Allow access, you create it in the app from the values the skill prepares, and the skill takes it from there.
 
 </details>
 

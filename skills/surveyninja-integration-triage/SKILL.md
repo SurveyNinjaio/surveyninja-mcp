@@ -79,9 +79,12 @@ group, restores access to the table, turns the zap back on.
 
 `get_quiz_email_settings`: is the notification on, is each address confirmed (the
 `checked` field) and switched on. An address that was added but never confirmed
-receives nothing, while the settings look complete. That is the most common cause:
-ask the person for the code from the letter and confirm it with
-`confirm_quiz_email_recipient`. A recipient or the whole notification switched off
+receives nothing, while the settings look complete. That is the most common cause.
+Connected by API key, ask the person for the code from the letter and confirm it with
+`confirm_quiz_email_recipient`. Connected with "Allow access" (the sign-in assistant
+apps use), that tool is not offered: the person enters the code in the app, on the
+survey's Notifications tab, by clicking the address shown in red under Added
+addresses. A recipient or the whole notification switched off
 is turned back on with `toggle_quiz_email_recipient` or `toggle_quiz_email`, after
 asking. If everything is confirmed and on, ask the person to check their spam
 folder.
