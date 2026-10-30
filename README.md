@@ -282,6 +282,14 @@ Code, `.agents/skills/` for Codex and Cursor, `.gemini/skills/` for Gemini CLI. 
 - There are no secrets in this repository. Configs use `YOUR_API_KEY` as a placeholder. Found something that looks
   like a real key, or a security issue? See [SECURITY.md](SECURITY.md).
 
+## Privacy
+
+The plugin and the skills run nothing on your computer: the skills are text instructions, and the plugin only adds
+the server address to your client. The one connection is to `https://mcp.surveyninja.io/mcp/v1` over HTTPS, and it
+carries what your assistant asks for: your surveys, responses and reports in your SurveyNinja account. SurveyNinja
+stores that data on a server in the EU behind Cloudflare and handles it under the
+[privacy policy](https://surveyninja.io/privacy).
+
 ## Links
 
 - [SurveyNinja](https://surveyninja.io/?utm_source=github&utm_medium=readme&utm_campaign=mcp)

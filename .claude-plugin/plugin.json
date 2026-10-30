@@ -11,6 +11,7 @@
   "homepage": "https://surveyninja.io/features/mcp-server",
   "repository": "https://github.com/surveyninjaio/surveyninja-mcp",
   "license": "MIT",
+  "privacyPolicyUrl": "https://surveyninja.io/privacy",
   "keywords": ["surveyninja", "surveys", "forms", "quiz", "polls", "feedback", "mcp"],
   "mcpServers": {
     "surveyninja": {
