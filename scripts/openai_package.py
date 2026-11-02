@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Builds the ChatGPT plugin package: dist/surveyninja-openai.zip with plugin.json, mcp.json, skills and the logo.
 
-Run: python3 scripts/openai_package.py. Python 3.11+, standard library only.
-Upload the ZIP at https://platform.openai.com/plugins (Create plugin, With MCP).
+Run: python3 scripts/openai_package.py --video <URL of the demo recording>. Python 3.11+, standard library only.
+Upload the ZIP at https://platform.openai.com/plugins (Upload new or existing plugin).
 """
+import argparse
 import json
 import shutil
 import zipfile
@@ -26,7 +27,7 @@ Things to ask:
 
 What it can do:
 - More than 160 tools: surveys, questions and logic, design and settings, publishing, responses, the summary, reports with filters, exports to CSV, Excel, Word, SPSS and PDF, public report links, tags, notifications and workspace members.
-- Every tool is marked as read-only or as changing data. Tools that cannot be undone, such as deleting a survey or responses, are marked destructive, so ChatGPT asks before it calls them.
+- Every tool is marked as read-only or as changing data. Tools that delete or overwrite data, such as deleting responses, are marked destructive, so ChatGPT asks before it calls them.
 - Ready-made skills for common jobs: a survey from a brief, a check before launch, open-answer analysis, sample size, A/B checks, results digests and sharing results.
 
 Who it is for: marketers, product and research teams, HR and anyone who runs surveys in SurveyNinja.
@@ -35,7 +36,7 @@ Limitations:
 - You need a SurveyNinja account. You sign in with SurveyNinja and choose one workspace; ChatGPT gets the same rights you have there and nothing more, and loses access when you leave the workspace or disconnect.
 - Some features, such as the AI report, depend on the workspace plan.
 - Up to 180 requests per minute per user. Links to exported files work for one hour.
-- Webhooks and new email recipients are set up in the SurveyNinja app: on this connection ChatGPT does not send responses to a new outside address. It then checks them and switches them on."""
+- Webhooks and new email recipients are created in the SurveyNinja app, so ChatGPT never sends responses to a new outside address on its own. Once they exist, ChatGPT can check them and switch them on."""
 
 POSITIVE = [
     {
@@ -45,22 +46,22 @@ POSITIVE = [
         "expected_behavior": "A list of the six sample surveys (Customer satisfaction, Employee engagement, Product feedback, Event registration, Survey basics quiz, Website feedback draft) with their response counts.",
     },
     {
-        "description": "Reads the NPS and summarizes why detractors give low scores.",
-        "prompt": "What is the NPS of the Customer satisfaction survey, and why do detractors give low scores?",
-        "tools_triggered": ["get_quiz_list", "get_quiz_summary", "get_quiz_answers"],
-        "expected_behavior": "The NPS of the survey (24) with the share of promoters, passives and detractors, and a short summary of the reasons in the detractors' open answers.",
+        "description": "Reads a survey's totals and summarizes the complaints in its open answers.",
+        "prompt": "How is the Customer satisfaction survey performing? Show views, completed responses and completion rate, and summarize what customers complain about in their open answers.",
+        "tools_triggered": ["get_quiz_list", "get_quiz_summary", "get_quiz_report"],
+        "expected_behavior": "181 views, 169 completed responses, 11 started but not finished, a 93% completion rate and an average time of about 2:51, plus a short summary of the complaints in the open answers, such as slow support replies and the mobile app.",
     },
     {
-        "description": "Checks a draft survey before launch without changing it.",
-        "prompt": "Check the Website feedback draft in SurveyNinja for broken logic and unclear questions before I publish it.",
+        "description": "Explains a draft survey's logic without changing it.",
+        "prompt": "Explain the logic of the Website feedback draft in SurveyNinja: where does each answer to the first question lead? Don't publish it.",
         "tools_triggered": ["get_quiz_list", "get_quiz_structure"],
-        "expected_behavior": "A list of findings about the draft's questions and logic. The draft stays unpublished and unchanged.",
+        "expected_behavior": "The draft has four questions. \"Yes\" to \"Did you find what you were looking for?\" jumps to the website rating, \"No\" goes on to \"What were you looking for?\" first. The draft stays unpublished and unchanged.",
     },
     {
         "description": "Creates a short survey and publishes it after confirmation.",
         "prompt": "Create a two-question feedback survey for a café in SurveyNinja and publish it.",
         "tools_triggered": ["create_quiz", "update_quiz_widgets", "publish_quiz"],
-        "expected_behavior": "A new survey with two questions. ChatGPT asks for confirmation before publishing, then returns the public link for respondents.",
+        "expected_behavior": "A new survey with two questions; ChatGPT may also build it with generate_ai_quiz. ChatGPT asks for confirmation before publishing, then returns the public link for respondents.",
     },
     {
         "description": "Exports responses to an Excel file.",
@@ -77,8 +78,8 @@ NEGATIVE = [
 ]
 
 
-def plugin_manifest(version):
-    return {
+def plugin_manifest(version, video=None):
+    manifest = {
         "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
         "name": "surveyninja",
         "version": version,
@@ -113,6 +114,9 @@ def plugin_manifest(version):
             }
         },
     }
+    if video:
+        manifest["extensions"]["com.openai"]["review"]["demo_recording_url"] = video
+    return manifest
 
 
 def mcp_config():
@@ -128,13 +132,20 @@ def mcp_config():
     }
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Build the ChatGPT plugin package.")
+    parser.add_argument("--video", help="HTTPS link to the demo recording of the review cases, required for the review")
+    args = parser.parse_args(argv)
+    if args.video and not args.video.startswith("https://"):
+        parser.error("--video must be an https:// link")
+
     version = json.loads((ROOT / "plugin/.claude-plugin/plugin.json").read_text(encoding="utf-8"))["version"]
     shutil.rmtree(BUILD, ignore_errors=True)
     (BUILD / "assets").mkdir(parents=True)
-    (BUILD / "plugin.json").write_text(json.dumps(plugin_manifest(version), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (BUILD / "plugin.json").write_text(json.dumps(plugin_manifest(version, args.video), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (BUILD / "mcp.json").write_text(json.dumps(mcp_config(), indent=2) + "\n", encoding="utf-8")
-    shutil.copy(ROOT / "assets/logo.png", BUILD / "assets/logo.png")
+    # The plugin icon is the 1024 px logo; assets/logo.png at the root is 500 px
+    shutil.copy(ROOT / "plugin/.claude-plugin/icon.png", BUILD / "assets/logo.png")
 
     skills = sorted(p for p in (ROOT / "skills").iterdir() if p.is_dir())
     for d in skills:
@@ -147,6 +158,8 @@ def main():
             if f.is_file():
                 z.write(f, f.relative_to(BUILD))
     print(f"{ZIP}: {len(skills)} skills, version {version}")
+    if not args.video:
+        print("no demo recording: the review needs one, build again with --video <URL> before uploading")
 
 
 if __name__ == "__main__":

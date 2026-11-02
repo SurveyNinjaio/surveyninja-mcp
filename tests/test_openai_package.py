@@ -42,6 +42,15 @@ class ManifestTest(unittest.TestCase):
         self.assertNotIn("test_credentials", self.ext["review"])
         self.assertNotIn("reviewer_instructions", self.ext["review"])
 
+    def test_demo_recording_is_added_only_when_given(self):
+        self.assertNotIn("demo_recording_url", self.ext["review"])
+        review = openai_package.plugin_manifest("1.0.0", "https://example.com/demo")["extensions"]["com.openai"]["review"]
+        self.assertEqual(review["demo_recording_url"], "https://example.com/demo")
+
+    def test_a_video_link_must_be_https(self):
+        with self.assertRaises(SystemExit):
+            openai_package.main(["--video", "http://example.com/demo"])
+
     def test_server_uses_oauth_with_dynamic_registration(self):
         server = openai_package.mcp_config()["mcpServers"]["surveyninja"]
         self.assertEqual(server["url"], openai_package.SERVER)
@@ -53,11 +62,14 @@ class BuildTest(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             dist = Path(tmp)
             with mock.patch.multiple(openai_package, DIST=dist, BUILD=dist / "openai", ZIP=dist / "p.zip"):
-                openai_package.main()
-            names = zipfile.ZipFile(dist / "p.zip").namelist()
+                openai_package.main(["--video", "https://example.com/demo"])
+            z = zipfile.ZipFile(dist / "p.zip")
+            names = z.namelist()
+            review = json.loads(z.read("plugin.json"))["extensions"]["com.openai"]["review"]
         self.assertIn("plugin.json", names)
         self.assertIn("mcp.json", names)
         self.assertIn("assets/logo.png", names)
+        self.assertEqual(review["demo_recording_url"], "https://example.com/demo")
         self.assertFalse(any(n.endswith("README.md") for n in names))
         skills = {n.split("/")[1] for n in names if n.startswith("skills/")}
         self.assertEqual(skills, {p.name for p in (ROOT / "skills").iterdir() if p.is_dir()})
