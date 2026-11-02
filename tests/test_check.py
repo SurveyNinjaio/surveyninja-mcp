@@ -121,5 +121,13 @@ class CheckTest(unittest.TestCase):
         self.assert_fails_with("plugin/README.md: the plugin directory needs at least 40 words")
 
 
+    def test_a_plugin_without_an_icon_fails(self):
+        (self.repo / "plugin/.claude-plugin/icon.png").unlink()
+        self.assert_fails_with("plugin/.claude-plugin/icon.png: the plugin directory needs a PNG icon")
+
+    def test_a_small_plugin_icon_fails(self):
+        shutil.copyfile(self.repo / "assets/logo.png", self.repo / "plugin/.claude-plugin/icon.png")
+        self.assert_fails_with("needs a square PNG of 512 to 2048 px under 2 MB, it is 500x500")
+
 if __name__ == "__main__":
     unittest.main()

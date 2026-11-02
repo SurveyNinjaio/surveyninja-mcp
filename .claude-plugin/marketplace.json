@@ -1,6 +1,6 @@
 {
   "name": "surveyninja",
-  "description": "SurveyNinja: the MCP server and skills for working with surveys from Claude Code",
+  "description": "SurveyNinja: the MCP server and skills for working with surveys from Claude",
   "owner": {
     "name": "SurveyNinja",
     "email": "team@surveyninja.io"

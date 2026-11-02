@@ -5,6 +5,7 @@ Run: python3 scripts/check.py. Python 3.11+, standard library only.
 """
 import json
 import re
+import struct
 import sys
 import tomllib
 from pathlib import Path
@@ -113,6 +114,16 @@ if readme_words < 40:
     errors.append(f"plugin/README.md: the plugin directory needs at least 40 words outside code blocks, it has {readme_words}")
 if not (PLUGIN / "LICENSE").exists() or (PLUGIN / "LICENSE").read_bytes() != (ROOT / "LICENSE").read_bytes():
     errors.append("plugin/LICENSE differs from LICENSE, run scripts/sync.py")
+# The directory takes the listing icon from this file once, when the plugin is first saved or submitted
+icon = PLUGIN / ".claude-plugin/icon.png"
+icon_data = icon.read_bytes() if icon.is_file() else b""
+if icon_data[:8] != b"\x89PNG\r\n\x1a\n":
+    errors.append("plugin/.claude-plugin/icon.png: the plugin directory needs a PNG icon")
+else:
+    w, h = struct.unpack(">II", icon_data[16:24])
+    if w != h or not 512 <= w <= 2048 or len(icon_data) >= 2 * 1024 * 1024:
+        errors.append(f"plugin/.claude-plugin/icon.png: needs a square PNG of 512 to 2048 px under 2 MB, it is {w}x{h}, "
+                      f"{len(icon_data) // 1024} KB")
 # The plugin's copy of the skills is the skills/ folder without the per-skill READMEs
 def skill_files(base):
     return {p.relative_to(base).as_posix(): p.read_bytes() for p in base.rglob("*")
