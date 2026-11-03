@@ -37,6 +37,8 @@ class ManifestTest(unittest.TestCase):
         self.assertEqual(len(cases["negative"]), 3)
         for case in cases["positive"]:
             self.assertTrue(case["prompt"] and case["tools_triggered"] and case["expected_behavior"])
+            # The portal takes tool names as one comma-separated string
+            self.assertIsInstance(case["tools_triggered"], str)
 
     def test_package_carries_no_reviewer_credentials(self):
         self.assertNotIn("test_credentials", self.ext["review"])

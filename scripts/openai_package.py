@@ -42,31 +42,31 @@ POSITIVE = [
     {
         "description": "Lists the account's surveys with response counts.",
         "prompt": "Show my SurveyNinja surveys and how many responses each has.",
-        "tools_triggered": ["get_quiz_list"],
+        "tools_triggered": "get_quiz_list",
         "expected_behavior": "A list of the six sample surveys (Customer satisfaction, Employee engagement, Product feedback, Event registration, Survey basics quiz, Website feedback draft) with their response counts.",
     },
     {
         "description": "Reads a survey's totals and summarizes the complaints in its open answers.",
         "prompt": "How is the Customer satisfaction survey performing? Show views, completed responses and completion rate, and summarize what customers complain about in their open answers.",
-        "tools_triggered": ["get_quiz_list", "get_quiz_summary", "get_quiz_report"],
+        "tools_triggered": "get_quiz_list, get_quiz_summary, get_quiz_report",
         "expected_behavior": "181 views, 169 completed responses, 11 started but not finished, a 93% completion rate and an average time of about 2:51, plus a short summary of the complaints in the open answers, such as slow support replies and the mobile app.",
     },
     {
         "description": "Explains a draft survey's logic without changing it.",
         "prompt": "Explain the logic of the Website feedback draft in SurveyNinja: where does each answer to the first question lead? Don't publish it.",
-        "tools_triggered": ["get_quiz_list", "get_quiz_structure"],
+        "tools_triggered": "get_quiz_list, get_quiz_structure",
         "expected_behavior": "The draft has four questions. \"Yes\" to \"Did you find what you were looking for?\" jumps to the website rating, \"No\" goes on to \"What were you looking for?\" first. The draft stays unpublished and unchanged.",
     },
     {
         "description": "Creates a short survey and publishes it after confirmation.",
         "prompt": "Create a two-question feedback survey for a café in SurveyNinja and publish it.",
-        "tools_triggered": ["create_quiz", "update_quiz_widgets", "publish_quiz"],
+        "tools_triggered": "create_quiz, update_quiz_widgets, publish_quiz",
         "expected_behavior": "A new survey with two questions; ChatGPT may also build it with generate_ai_quiz. ChatGPT asks for confirmation before publishing, then returns the public link for respondents.",
     },
     {
         "description": "Exports responses to an Excel file.",
         "prompt": "Export the responses of the Product feedback survey to Excel.",
-        "tools_triggered": ["get_quiz_list", "export_answers_xlsx"],
+        "tools_triggered": "get_quiz_list, export_answers_xlsx",
         "expected_behavior": "A download link to an .xlsx file with the survey's responses; the link works for one hour.",
     },
 ]
