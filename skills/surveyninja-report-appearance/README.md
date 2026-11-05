@@ -52,9 +52,9 @@
 
 | Tool | What it does | Kind |
 |---|---|---|
-| `apply_quiz_theme` | Apply theme to quiz | write |
+| `apply_quiz_theme` | Apply theme to quiz | destructive |
 | `create_report_appearance_preset` | Create report appearance preset | write |
-| `create_theme` | Create theme | write |
+| `create_theme` | Create theme | destructive |
 | `delete_report_appearance_preset` | Delete report appearance preset | destructive |
 | `delete_workspace_logo` | Delete workspace logo | destructive |
 | `get_theme_details` | Theme details | read |
@@ -62,11 +62,11 @@
 | `get_workspace_list` | Workspace list | read |
 | `get_workspace_report_appearance` | Workspace report appearance | read |
 | `manage_theme` | Manage themes | destructive |
-| `update_quiz_settings` | Quiz settings | write |
-| `update_theme` | Update theme | write |
-| `update_workspace_branding` | Workspace logo and copyright | write |
-| `update_workspace_report_palette` | Workspace report palette | write |
-| `upload_workspace_logo` | Upload workspace logo | write |
+| `update_quiz_settings` | Quiz settings | destructive |
+| `update_theme` | Update theme | destructive |
+| `update_workspace_branding` | Workspace logo and copyright | destructive |
+| `update_workspace_report_palette` | Workspace report palette | destructive |
+| `upload_workspace_logo` | Upload workspace logo | destructive |
 
 ## Questions
 

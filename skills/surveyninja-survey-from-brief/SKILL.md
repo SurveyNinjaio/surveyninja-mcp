@@ -26,8 +26,8 @@ assistant's job.
 
 ## 2. Check for something ready-made
 
-`search_quiz_templates` by topic. The catalog has English templates but no
-Spanish or Portuguese ones: for those audiences search with `lang` set to `en`
+`search_quiz_templates` by topic, with `lang` set to the audience's language: the
+catalog is in English, Spanish and Portuguese. If nothing fits, search in `en`
 and translate. If a suitable template exists, offer to start
 from it with `create_quiz_from_template` and edit from there: it is faster and
 usually better than building from scratch. The choice stays with the person.

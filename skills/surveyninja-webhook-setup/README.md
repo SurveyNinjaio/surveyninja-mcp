@@ -61,7 +61,7 @@
 | `get_quiz_webhooks` | Quiz webhooks | read |
 | `get_workspace_list` | Workspace list | read |
 | `get_workspace_tariff` | Workspace plan | read |
-| `manage_quiz_zapier` | Sending to Zapier | write |
+| `manage_quiz_zapier` | Sending to Zapier | destructive |
 | `resend_quiz_webhook_log` | Resend webhook | write |
 | `toggle_quiz_webhook` | Webhook on and off | write |
 

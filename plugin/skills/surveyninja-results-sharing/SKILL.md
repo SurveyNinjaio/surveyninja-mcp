@@ -31,8 +31,12 @@ words, find it with `get_quiz_list` and confirm it is the right one.
 
 ## Link or file
 
-**A link** always shows fresh data. It cannot be turned off and has no expiry: it
-stops opening only if the survey is archived or deleted. It suits a survey that is
+**A link** always shows fresh data and has no expiry. A link to the summary, the
+report or the responses stops opening when it is switched off with
+`set_share_link_active` (`get_share_links` lists one section's links, `summary`,
+`report` or `answers`, with their `uuid`) or when the survey is archived or
+deleted. The AI report link cannot be switched off: only archiving or deleting the
+survey closes it, so say that before sharing it. A link suits a survey that is
 still collecting and a client who will come back more than once.
 
 **A file** freezes the state at export time. It suits a report "as of a date" or a
@@ -45,10 +49,11 @@ so.
    phone, email or name question, a public link to the *responses* shows them to
    anyone who has the link. Offer the summary or the report instead; if responses
    are really needed, ask whether they should leave the team at all.
-2. **Period and scope.** The summary and responses links take a date range and
-   the completion status (`is_complete`); the report link keeps the report
-   filters saved in the app. Ask whether abandoned completions are wanted: for a
-   client, usually not.
+2. **Period and scope.** The summary link takes a date range. The responses link
+   takes a date range and the completion status (`is_complete`). The report link
+   takes the completion status and otherwise keeps the report filters saved in
+   the app. Ask whether abandoned completions are wanted: for a client, usually
+   not.
 3. **Saved filter.** If the report already has a configured slice
    (`get_quiz_report_filters`), hand that over instead of building a new one.
 
@@ -76,9 +81,12 @@ offer the summary, the report or the responses instead.
 
 What exactly was handed over (summary, report, responses, AI report), for which
 period, with which filters, and whether it is a link that stays open or a file whose
-download link lives an hour. If a link was handed over, remind them it is public
-and cannot be revoked: only archiving or deleting the survey closes it. That
-matters most when the responses hold contacts.
+download link lives an hour. If a link was handed over, remind them it is public:
+anyone who has it sees the results until it is switched off, and an AI report
+link until the survey is archived or deleted. That matters most when the
+responses hold contacts. When the person asks to close a summary, report or
+responses link, find it in `get_share_links` for that section and switch it off
+with `set_share_link_active`.
 
 ## What not to do
 

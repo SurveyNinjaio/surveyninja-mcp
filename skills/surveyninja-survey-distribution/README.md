@@ -6,14 +6,14 @@
 
 | Skill | Version | Tools | Download | Page |
 |---|---|:-:|:-:|:-:|
-| `surveyninja-survey-distribution` | 1.0.2 | 10 | [ZIP](https://surveyninja.io/skills/survey-distribution.zip) | [surveyninja.io](https://surveyninja.io/skills/survey-distribution) |
+| `surveyninja-survey-distribution` | 1.1.0 | 10 | [ZIP](https://surveyninja.io/skills/survey-distribution.zip) | [surveyninja.io](https://surveyninja.io/skills/survey-distribution) |
 
 ## What it does
 
 1. **Starts with channel labels.** One survey, several places. Without labels the responses merge into one pile, so the labels are agreed before the send-out, not after.
 2. **Gives one link per channel.** Newsletter, social posts, WhatsApp group, website banner: each gets its own link with a readable label instead of utm1 and utm2 that nobody can decode a month later.
 3. **Covers print.** A QR code in PNG, SVG or EPS with your colors for a sticker, a slide or a flyer, checked before the print run. A printable version in PDF or Word when the survey is filled in on paper.
-4. **Restricts access when needed.** Passwords in batches of up to fifty, different ones for different groups, or a separate link for each branch or partner.
+4. **Restricts access when needed.** Passwords for different groups, or a separate link for each branch or partner.
 
 ## What you get
 
@@ -60,10 +60,10 @@
 | `get_quiz_variables` | Quiz variables | read |
 | `get_quiz_versions` | Quiz publication history | read |
 | `manage_quiz_passwords` | Passwords for a closed quiz | destructive |
-| `manage_quiz_qr_code` | Quiz QR code | write |
+| `manage_quiz_qr_code` | Quiz QR code | destructive |
 | `manage_quiz_unique_links` | Unique quiz links | destructive |
-| `set_quiz_link` | Quiz link address | write |
-| `update_quiz_settings` | Quiz settings | write |
+| `set_quiz_link` | Quiz link address | destructive |
+| `update_quiz_settings` | Quiz settings | destructive |
 
 ## Questions
 
@@ -98,7 +98,7 @@ A code for a sticker, a slide or a flyer in PNG, SVG or EPS, with your choice of
 <details>
 <summary><b>How do I make a survey private?</b></summary>
 
-The skill adds passwords in batches of up to fifty, different ones for different groups, and gives you the list right away because passwords cannot be read back later. Another option is a separate link for each branch or partner, where your plan allows it.
+With an API key the skill adds passwords in batches of up to fifty, different ones for different groups, and gives you the list right away because passwords cannot be read back later. Connected through Allow access, you add passwords in the survey settings yourself, so they never pass through the chat. Another option is a separate link for each branch or partner, where your plan allows it.
 
 </details>
 

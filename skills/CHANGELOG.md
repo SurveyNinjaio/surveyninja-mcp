@@ -7,6 +7,20 @@ out of date, so versions and dates live here. A skill's version is also on its p
 - **Second number**: a new step, rule or reference. Worth updating.
 - **First number**: the skill was rewritten or renamed. Remove the old file.
 
+## 2026-11-05
+
+On Allow access, the connection Claude, ChatGPT and other assistant apps use, the server no longer takes secrets
+or code through the chat: survey passwords, captcha keys, custom scripts and the code of an HTML block are set in
+the app. A connection by API key keeps them. A full read of the skills against the server also fixed what they said
+about share links and template languages.
+
+| Version | Skills | What changed |
+|---|---|---|
+| 1.1.0 | `survey-distribution` | On Allow access the person adds survey passwords in the app; the skill only lists and deletes them |
+| 1.1.0 | `survey-from-brief` | On Allow access the HTML block code is not added or changed: the skill keeps the saved code and offers a text screen instead. Templates are searched in the audience's language: the catalog is in English, Spanish and Portuguese |
+| 1.1.0 | `results-sharing` | A summary, report or responses link can be switched off: the skill finds it and turns it off on request; an AI report link closes only with the survey archived or deleted. Which link takes which period and status is stated per link |
+| 1.0.2 | `data-quality` | On Allow access, passwords and captcha keys for the next wave are entered in the app |
+
 ## 2026-10-30
 
 Claude, ChatGPT and other assistant apps connect to SurveyNinja with Allow access. On that connection the

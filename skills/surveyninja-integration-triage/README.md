@@ -62,7 +62,7 @@
 | `get_quiz_webhooks` | Quiz webhooks | read |
 | `manage_quiz_google_sheets` | Google Sheets export | destructive |
 | `manage_quiz_messenger` | Telegram notifications | destructive |
-| `manage_quiz_zapier` | Sending to Zapier | write |
+| `manage_quiz_zapier` | Sending to Zapier | destructive |
 | `resend_integration_logs` | Resend to messenger | write |
 | `resend_quiz_webhook_log` | Resend webhook | write |
 | `toggle_quiz_email` | Quiz emails on and off | write |

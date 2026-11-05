@@ -54,9 +54,9 @@
 | `get_quiz_answers` | Quiz answers | read |
 | `get_quiz_structure` | Quiz structure | read |
 | `get_quiz_texts` | Quiz default texts | read |
-| `publish_quiz` | Publish quiz | write |
-| `update_quiz_texts` | Edit default texts | write |
-| `update_quiz_widgets` | Quiz questions and structure | write |
+| `publish_quiz` | Publish quiz | destructive |
+| `update_quiz_texts` | Edit default texts | destructive |
+| `update_quiz_widgets` | Quiz questions and structure | destructive |
 
 ## Questions
 

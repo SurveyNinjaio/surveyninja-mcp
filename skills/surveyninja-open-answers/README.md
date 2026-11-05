@@ -52,7 +52,7 @@
 | `get_quiz_report_filters` | Saved report filters | read |
 | `get_quiz_report_inputs` | Text answers of a question | read |
 | `get_quiz_structure` | Quiz structure | read |
-| `save_quiz_report_filters` | Save report filters | write |
+| `save_quiz_report_filters` | Save report filters | destructive |
 
 ## Questions
 

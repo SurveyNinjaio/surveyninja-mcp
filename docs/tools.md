@@ -2,7 +2,7 @@
 
 # SurveyNinja MCP tools
 
-173 tools by section. 62 only read. 29 delete or overwrite data and carry the
+173 tools by section. 63 only read. 72 delete or overwrite data and carry the
 `destructiveHint` annotation, so your client can ask before it calls them. The rest create or change data, and
 some act at once: publishing a survey or inviting a member, for example.
 
@@ -28,30 +28,30 @@ says survey: they mean the same thing.
 | `make_quiz_template` | Make quiz a template | write |
 | `get_quiz_list` | Quiz list | read |
 | `duplicate_quiz` | Duplicate quiz | write |
-| `rename_quiz` | Rename quiz | write |
-| `move_quiz` | Move quiz to a folder | write |
-| `archive_quiz` | Archive quiz | write |
+| `rename_quiz` | Rename quiz | destructive |
+| `move_quiz` | Move quiz to a folder | destructive |
+| `archive_quiz` | Archive quiz | destructive |
 | `delete_quiz` | Delete quiz | destructive |
 | `restore_quiz` | Restore quiz from trash | write |
-| `publish_quiz` | Publish quiz | write |
+| `publish_quiz` | Publish quiz | destructive |
 | `get_quiz_versions` | Quiz publication history | read |
-| `restore_quiz_version` | Restore previous quiz version | write |
-| `update_quiz_note` | Quiz note | write |
-| `update_quiz_settings` | Quiz settings | write |
+| `restore_quiz_version` | Restore previous quiz version | destructive |
+| `update_quiz_note` | Quiz note | destructive |
+| `update_quiz_settings` | Quiz settings | destructive |
 
 ## Questions and logic
 
 | Tool | What it does | Kind |
 |---|---|---|
 | `get_quiz_structure` | Quiz structure | read |
-| `update_quiz_widgets` | Quiz questions and structure | write |
-| `update_quiz_logic` | Quiz branching logic | write |
+| `update_quiz_widgets` | Quiz questions and structure | destructive |
+| `update_quiz_logic` | Quiz branching logic | destructive |
 | `get_quiz_texts` | Quiz default texts | read |
-| `update_quiz_texts` | Edit default texts | write |
+| `update_quiz_texts` | Edit default texts | destructive |
 | `upload_quiz_media` | Upload a file to a quiz | write |
 | `upload_quiz_widget_image` | Image for an answer option | write |
 | `get_favorite_questions` | Favorite questions | read |
-| `save_favorite_question` | Save question to favorites | write |
+| `save_favorite_question` | Save question to favorites | destructive |
 | `delete_favorite_question` | Delete favorite question | destructive |
 
 ## Variables and hidden fields
@@ -60,15 +60,15 @@ says survey: they mean the same thing.
 |---|---|---|
 | `get_quiz_variables` | Quiz variables | read |
 | `create_quiz_variable` | Create quiz variable | write |
-| `update_quiz_variable` | Update quiz variable | write |
+| `update_quiz_variable` | Update quiz variable | destructive |
 | `delete_quiz_variable` | Delete quiz variable | destructive |
 | `get_quiz_hidden_options` | Quiz hidden options | read |
 | `create_hidden_option` | Create quiz hidden option | write |
-| `update_hidden_option` | Update quiz hidden option | write |
+| `update_hidden_option` | Update quiz hidden option | destructive |
 | `delete_hidden_option` | Delete quiz hidden option | destructive |
 | `get_quiz_widgets_hidden` | Widget hidden options | read |
 | `create_widget_hidden_option` | Create widget hidden option | write |
-| `update_widget_hidden_option` | Update widget hidden option | write |
+| `update_widget_hidden_option` | Update widget hidden option | destructive |
 | `delete_widget_hidden_option` | Delete widget hidden option | destructive |
 
 ## Themes
@@ -77,17 +77,17 @@ says survey: they mean the same thing.
 |---|---|---|
 | `get_theme_list` | Theme list | read |
 | `get_theme_details` | Theme details | read |
-| `create_theme` | Create theme | write |
-| `update_theme` | Update theme | write |
+| `create_theme` | Create theme | destructive |
+| `update_theme` | Update theme | destructive |
 | `manage_theme` | Manage themes | destructive |
-| `apply_quiz_theme` | Apply theme to quiz | write |
+| `apply_quiz_theme` | Apply theme to quiz | destructive |
 
 ## Sharing
 
 | Tool | What it does | Kind |
 |---|---|---|
-| `set_quiz_link` | Quiz link address | write |
-| `manage_quiz_qr_code` | Quiz QR code | write |
+| `set_quiz_link` | Quiz link address | destructive |
+| `manage_quiz_qr_code` | Quiz QR code | destructive |
 | `manage_quiz_passwords` | Passwords for a closed quiz | destructive |
 | `export_quiz_print` | Quiz print version | read |
 | `manage_quiz_unique_links` | Unique quiz links | destructive |
@@ -112,9 +112,9 @@ says survey: they mean the same thing.
 | `create_booking_block` | Block booking time | write |
 | `delete_booking_block` | Remove booking block | destructive |
 | `get_booking_journal` | Booking journal | read |
-| `update_booking` | Update a booking | write |
+| `update_booking` | Update a booking | destructive |
 | `get_schedulers` | Booking schedules | read |
-| `save_scheduler` | Booking schedule | write |
+| `save_scheduler` | Booking schedule | destructive |
 | `duplicate_scheduler` | Duplicate booking schedule | write |
 | `delete_scheduler` | Delete booking schedule | destructive |
 
@@ -123,15 +123,15 @@ says survey: they mean the same thing.
 | Tool | What it does | Kind |
 |---|---|---|
 | `get_quiz_answers` | Quiz answers | read |
-| `count_quiz_answers` | How many answers match | write |
+| `count_quiz_answers` | How many answers match | read |
 | `get_answer_extra_field_values` | Link label values | read |
-| `tag_answer` | Tags on an answer | write |
+| `tag_answer` | Tags on an answer | destructive |
 | `get_answer_tags` | Account answer tags | read |
 | `create_answer_tag` | Create answer tag | write |
 | `delete_answer_tag` | Delete answer tag | destructive |
-| `set_answer_note` | Answer note | write |
+| `set_answer_note` | Answer note | destructive |
 | `toggle_answer_visibility` | Hide an answer from reports | write |
-| `set_answers_order_mode` | Question order in an answer | write |
+| `set_answers_order_mode` | Question order in an answer | destructive |
 | `delete_quiz_answers` | Delete answers | destructive |
 
 ## Reports
@@ -142,10 +142,10 @@ says survey: they mean the same thing.
 | `get_quiz_report` | Quiz report | read |
 | `generate_filtered_report` | Filtered report | write |
 | `get_quiz_report_filters` | Saved report filters | read |
-| `save_quiz_report_filters` | Save report filters | write |
+| `save_quiz_report_filters` | Save report filters | destructive |
 | `get_quiz_report_files` | Files from answers | read |
 | `get_quiz_report_inputs` | Text answers of a question | read |
-| `generate_ai_report` | AI report | write |
+| `generate_ai_report` | AI report | destructive |
 | `get_ai_report` | Ready AI report | read |
 | `share_ai_report` | Public link to an AI report | write |
 | `share_report_link` | Public link to a report | write |
@@ -154,11 +154,11 @@ says survey: they mean the same thing.
 | `get_workspace_report_appearance` | Workspace report appearance | read |
 | `create_report_appearance_preset` | Create report appearance preset | write |
 | `delete_report_appearance_preset` | Delete report appearance preset | destructive |
-| `update_workspace_report_palette` | Workspace report palette | write |
+| `update_workspace_report_palette` | Workspace report palette | destructive |
 | `get_quiz_visits` | Visit log | read |
 | `get_quiz_visit_segments` | Visits by source, device, browser or country | read |
 | `reset_quiz_visits` | Reset visits | destructive |
-| `manage_quiz_filter_presets` | Saved filters | write |
+| `manage_quiz_filter_presets` | Saved filters | destructive |
 
 ## Exports
 
@@ -182,11 +182,11 @@ says survey: they mean the same thing.
 | `confirm_quiz_email_recipient` | Confirm recipient address | write, *API key only* |
 | `toggle_quiz_email_recipient` | Recipient on and off | write |
 | `delete_quiz_email_recipient` | Delete answer copy recipient | destructive |
-| `save_quiz_email_template` | Quiz email template | write |
-| `set_quiz_email_questions` | Questions included in the email | write |
-| `manage_workspace_smtp` | Custom mail service | write |
+| `save_quiz_email_template` | Quiz email template | destructive |
+| `set_quiz_email_questions` | Questions included in the email | destructive |
+| `manage_workspace_smtp` | Custom mail service | destructive |
 | `add_quiz_email_team_member` | Account member as a recipient | write |
-| `save_quiz_email_notifications` | Email rules, digest and events | write |
+| `save_quiz_email_notifications` | Email rules, digest and events | destructive |
 | `send_quiz_email_test` | Send me a sample letter | write |
 | `get_quiz_email_log` | Quiz email log | read |
 | `resend_quiz_email_log` | Send the letter again | write |
@@ -201,11 +201,11 @@ says survey: they mean the same thing.
 | `manage_quiz_google_sheets` | Google Sheets export | destructive |
 | `manage_quiz_messenger` | Telegram notifications | destructive |
 | `get_quiz_messenger_link` | Bot connection link | read |
-| `manage_quiz_zapier` | Sending to Zapier | write |
-| `manage_quiz_analytics` | Analytics counters and pixels | write |
+| `manage_quiz_zapier` | Sending to Zapier | destructive |
+| `manage_quiz_analytics` | Analytics counters and pixels | destructive |
 | `get_quiz_webhooks` | Quiz webhooks | read |
 | `create_quiz_webhook` | Create webhook | write, *API key only* |
-| `update_quiz_webhook` | Update webhook | write, *API key only* |
+| `update_quiz_webhook` | Update webhook | destructive, *API key only* |
 | `toggle_quiz_webhook` | Webhook on and off | write |
 | `delete_quiz_webhook` | Delete webhook | destructive |
 | `get_quiz_webhook_logs` | Webhook delivery log | read |
@@ -228,11 +228,11 @@ says survey: they mean the same thing.
 | `invite_workspace_member` | Invite member | write |
 | `resend_workspace_member_invite` | Resend member invite | write |
 | `remove_workspace_member` | Remove member | destructive |
-| `set_workspace_member_role` | Change member role | write |
-| `set_workspace_member_folders` | Folders available to a member | write |
+| `set_workspace_member_role` | Change member role | destructive |
+| `set_workspace_member_folders` | Folders available to a member | destructive |
 | `get_workspace_member_access` | Member access | read |
 | `get_workspace_roles` | Member roles | read |
-| `save_workspace_role` | Member role | write |
+| `save_workspace_role` | Member role | destructive |
 | `delete_workspace_role` | Delete member role | destructive |
 | `set_workspace_member_blocked` | Close or restore member access | destructive |
 | `set_workspace_member_api_access` | Member API access | destructive |
@@ -242,15 +242,15 @@ says survey: they mean the same thing.
 | Tool | What it does | Kind |
 |---|---|---|
 | `get_user_me` | My profile | read |
-| `update_user_profile` | Update my profile | write, *API key only* |
+| `update_user_profile` | Update my profile | destructive, *API key only* |
 | `manage_user_sessions` | Account sessions | destructive, *API key only* |
 | `get_workspace_list` | Workspace list | read |
 | `get_workspace_details` | Workspace details | read |
 | `get_workspace_activity` | Account activity log | read |
-| `update_workspace_branding` | Workspace logo and copyright | write |
-| `upload_workspace_logo` | Upload workspace logo | write |
+| `update_workspace_branding` | Workspace logo and copyright | destructive |
+| `upload_workspace_logo` | Upload workspace logo | destructive |
 | `delete_workspace_logo` | Delete workspace logo | destructive |
-| `manage_workspace_domain` | Custom account domain | write |
+| `manage_workspace_domain` | Custom account domain | destructive |
 | `get_workspace_domain_status` | Custom domain status | read |
 | `manage_workspace_files` | Workspace files | destructive |
 | `get_workspace_hidden_files` | Files hidden over quota | read |
@@ -265,7 +265,7 @@ says survey: they mean the same thing.
 | `get_workspace_tariff` | Workspace plan | read |
 | `get_tariff_list` | Plan list | read |
 | `get_partner_program` | Partner program | read, *API key only* |
-| `manage_partner_source` | Partner source labels | write, *API key only* |
+| `manage_partner_source` | Partner source labels | destructive, *API key only* |
 | `get_respondent_campaigns` | Ordered respondents | read |
 
 ## Email campaigns

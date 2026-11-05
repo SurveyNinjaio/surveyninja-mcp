@@ -74,6 +74,12 @@ For "how likely are you to recommend", use `nps`.
 `booking` needs a schedule (`get_schedulers`). Without one the question shows no
 free time: warn the person rather than adding it silently.
 
+`html` runs its code for every respondent, so its code is written only with an API
+key. Connected with "Allow access", `htmlCode` cannot be added or changed. When
+editing a survey that already has an HTML block, leave the field out (the saved
+code stays) or send it unchanged; an empty string deletes it. For text, offer a
+`message` screen, or ask the person to paste the code in the app.
+
 ## Screens without a question
 
 | Type | What it is | Main fields |

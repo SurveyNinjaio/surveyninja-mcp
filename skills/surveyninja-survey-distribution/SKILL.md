@@ -49,12 +49,19 @@ right page **before** printing a run.
 
 ## Restricted survey
 
-`manage_quiz_passwords` adds passwords when the survey is not for everyone, up to
-fifty per call; for more, make several passes. Different groups can get different
-passwords. The password check itself is switched on with `update_quiz_settings`.
+Passwords close a survey that is not for everyone; different groups can get
+different passwords. The password check itself is switched on with `use_password`
+in `update_quiz_settings`.
 
-Passwords are stored in a form that cannot be read back, so hand the list to the
-person when you create it.
+- Connected by API key: `manage_quiz_passwords` adds them, up to fifty per call;
+  for more, make several passes. Passwords are stored in a form that cannot be
+  read back, so hand the list to the person when you create it.
+- Connected with "Allow access" (the sign-in Claude, ChatGPT and other assistant
+  apps use), passwords never pass through the chat. The person adds them in the
+  app: Survey, Settings, Identification and access, Access by password, "+ Add
+  password", then publishes the survey. `manage_quiz_passwords` then only lists
+  and deletes them. Do not invent passwords, ask for them or take ones typed into
+  the chat then: you have nowhere to enter them.
 
 `manage_quiz_unique_links` makes a separate address per department, branch,
 partner or person, each with its own answer limit; answers remember which link was

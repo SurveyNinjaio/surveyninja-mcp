@@ -56,8 +56,8 @@
 | Tool | What it does | Kind |
 |---|---|---|
 | `get_quiz_structure` | Quiz structure | read |
-| `publish_quiz` | Publish quiz | write |
-| `update_quiz_logic` | Quiz branching logic | write |
+| `publish_quiz` | Publish quiz | destructive |
+| `update_quiz_logic` | Quiz branching logic | destructive |
 
 ## Questions
 

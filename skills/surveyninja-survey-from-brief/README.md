@@ -6,7 +6,7 @@
 
 | Skill | Version | Tools | Download | Page |
 |---|---|:-:|:-:|:-:|
-| `surveyninja-survey-from-brief` | 1.0.2 | 13 | [ZIP](https://surveyninja.io/skills/survey-from-brief.zip) | [surveyninja.io](https://surveyninja.io/skills/survey-from-brief) |
+| `surveyninja-survey-from-brief` | 1.1.0 | 13 | [ZIP](https://surveyninja.io/skills/survey-from-brief.zip) | [surveyninja.io](https://surveyninja.io/skills/survey-from-brief) |
 
 ## What it does
 
@@ -57,7 +57,7 @@
 
 | Tool | What it does | Kind |
 |---|---|---|
-| `apply_quiz_theme` | Apply theme to quiz | write |
+| `apply_quiz_theme` | Apply theme to quiz | destructive |
 | `create_quiz` | Create quiz | write |
 | `create_quiz_from_template` | Create quiz from template | write |
 | `generate_ai_quiz` | Build quiz from description | write |
@@ -65,11 +65,11 @@
 | `get_quiz_structure` | Quiz structure | read |
 | `get_quiz_texts` | Quiz default texts | read |
 | `get_theme_list` | Theme list | read |
-| `publish_quiz` | Publish quiz | write |
+| `publish_quiz` | Publish quiz | destructive |
 | `search_quiz_templates` | Search ready-made quizzes | read |
-| `update_quiz_logic` | Quiz branching logic | write |
-| `update_quiz_texts` | Edit default texts | write |
-| `update_quiz_widgets` | Quiz questions and structure | write |
+| `update_quiz_logic` | Quiz branching logic | destructive |
+| `update_quiz_texts` | Edit default texts | destructive |
+| `update_quiz_widgets` | Quiz questions and structure | destructive |
 
 ## Questions
 

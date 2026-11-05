@@ -55,10 +55,10 @@
 | `get_quiz_variables` | Quiz variables | read |
 | `get_quiz_versions` | Quiz publication history | read |
 | `get_quiz_webhooks` | Quiz webhooks | read |
-| `manage_quiz_analytics` | Analytics counters and pixels | write |
+| `manage_quiz_analytics` | Analytics counters and pixels | destructive |
 | `manage_quiz_messenger` | Telegram notifications | destructive |
-| `manage_quiz_qr_code` | Quiz QR code | write |
-| `set_quiz_link` | Quiz link address | write |
+| `manage_quiz_qr_code` | Quiz QR code | destructive |
+| `set_quiz_link` | Quiz link address | destructive |
 
 ## Questions
 

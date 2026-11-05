@@ -67,9 +67,9 @@
 | `manage_folder_access` | Folder access | destructive |
 | `remove_workspace_member` | Remove member | destructive |
 | `resend_workspace_member_invite` | Resend member invite | write |
-| `save_workspace_role` | Member role | write |
-| `set_workspace_member_folders` | Folders available to a member | write |
-| `set_workspace_member_role` | Change member role | write |
+| `save_workspace_role` | Member role | destructive |
+| `set_workspace_member_folders` | Folders available to a member | destructive |
+| `set_workspace_member_role` | Change member role | destructive |
 
 ## Questions
 

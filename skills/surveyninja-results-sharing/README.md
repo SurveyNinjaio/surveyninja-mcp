@@ -6,12 +6,12 @@
 
 | Skill | Version | Tools | Download | Page |
 |---|---|:-:|:-:|:-:|
-| `surveyninja-results-sharing` | 1.0.2 | 13 | [ZIP](https://surveyninja.io/skills/results-sharing.zip) | [surveyninja.io](https://surveyninja.io/skills/results-sharing) |
+| `surveyninja-results-sharing` | 1.1.0 | 15 | [ZIP](https://surveyninja.io/skills/results-sharing.zip) | [surveyninja.io](https://surveyninja.io/skills/results-sharing) |
 
 ## What it does
 
 1. **Works out what is needed first.** A summary, a report with breakdowns, individual responses and a text with conclusions are four different things. The assistant asks one clarifying question instead of guessing.
-2. **Picks a link or a file for the job.** A link shows fresh data and cannot be revoked later. A file freezes the state on a date. Download links live an hour, and the assistant says so up front.
+2. **Picks a link or a file for the job.** A link shows fresh data and can be switched off when it is no longer needed; an AI report link closes only when the survey is archived or deleted. A file freezes the state on a date. Download links live an hour, and the assistant says so up front.
 3. **Checks what goes outside.** If the survey asks for phones or emails, a public link to responses shows them to anyone. The assistant warns you and offers the summary instead.
 4. **Hands over the AI report.** It reads the report you already have before building a new one, and says honestly when there are too few answers for conclusions.
 
@@ -57,11 +57,13 @@
 | `export_filtered_report_pdf` | Export report to PDF | read |
 | `export_filtered_report_word` | Export report to Word | read |
 | `export_summary_pdf` | Export summary to PDF | read |
-| `generate_ai_report` | AI report | write |
+| `generate_ai_report` | AI report | destructive |
 | `get_ai_report` | Ready AI report | read |
 | `get_quiz_list` | Quiz list | read |
 | `get_quiz_report_filters` | Saved report filters | read |
 | `get_quiz_structure` | Quiz structure | read |
+| `get_share_links` | List public links | read |
+| `set_share_link_active` | Disable or enable a public link | destructive |
 | `share_ai_report` | Public link to an AI report | write |
 | `share_answers_link` | Public link to answers | write |
 | `share_report_link` | Public link to a report | write |
@@ -86,7 +88,7 @@ A link always shows fresh data and suits a survey that is still collecting. A fi
 <details>
 <summary><b>How long does a link work?</b></summary>
 
-A public link has no expiry and cannot be turned off: it stops opening only if the survey is archived or deleted. A download link for a file lives one hour, and the skill tells you so.
+A public link has no expiry. It stops opening when you switch it off or when the survey is archived or deleted, and the skill can switch it off for you. The AI report link is the exception: only archiving or deleting the survey closes it. A download link for a file lives one hour, and the skill tells you so.
 
 </details>
 

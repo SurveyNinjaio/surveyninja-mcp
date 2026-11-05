@@ -61,9 +61,9 @@
 | `get_answer_tags` | Account answer tags | read |
 | `get_quiz_answers` | Quiz answers | read |
 | `get_workspace_list` | Workspace list | read |
-| `set_answer_note` | Answer note | write |
-| `set_answers_order_mode` | Question order in an answer | write |
-| `tag_answer` | Tags on an answer | write |
+| `set_answer_note` | Answer note | destructive |
+| `set_answers_order_mode` | Question order in an answer | destructive |
+| `tag_answer` | Tags on an answer | destructive |
 | `toggle_answer_visibility` | Hide an answer from reports | write |
 
 ## Questions

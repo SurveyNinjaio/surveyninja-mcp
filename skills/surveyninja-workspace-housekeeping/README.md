@@ -56,7 +56,7 @@
 
 | Tool | What it does | Kind |
 |---|---|---|
-| `archive_quiz` | Archive quiz | write |
+| `archive_quiz` | Archive quiz | destructive |
 | `create_folder` | Create folder | write |
 | `delete_quiz` | Delete quiz | destructive |
 | `duplicate_quiz` | Duplicate quiz | write |
@@ -68,10 +68,10 @@
 | `make_quiz_template` | Make quiz a template | write |
 | `manage_workspace_files` | Workspace files | destructive |
 | `manage_workspace_folder` | Manage folder | destructive |
-| `move_quiz` | Move quiz to a folder | write |
-| `rename_quiz` | Rename quiz | write |
+| `move_quiz` | Move quiz to a folder | destructive |
+| `rename_quiz` | Rename quiz | destructive |
 | `restore_quiz` | Restore quiz from trash | write |
-| `update_quiz_note` | Quiz note | write |
+| `update_quiz_note` | Quiz note | destructive |
 
 ## Questions
 

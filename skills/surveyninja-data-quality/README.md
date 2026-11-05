@@ -6,7 +6,7 @@
 
 | Skill | Version | Tools | Download | Page |
 |---|---|:-:|:-:|:-:|
-| `surveyninja-data-quality` | 1.0.1 | 7 | [ZIP](https://surveyninja.io/skills/data-quality.zip) | [surveyninja.io](https://surveyninja.io/skills/data-quality) |
+| `surveyninja-data-quality` | 1.0.2 | 7 | [ZIP](https://surveyninja.io/skills/data-quality.zip) | [surveyninja.io](https://surveyninja.io/skills/data-quality) |
 
 ## What it does
 
@@ -61,7 +61,7 @@
 | `get_quiz_report` | Quiz report | read |
 | `get_quiz_report_inputs` | Text answers of a question | read |
 | `get_quiz_summary` | Quiz summary | read |
-| `tag_answer` | Tags on an answer | write |
+| `tag_answer` | Tags on an answer | destructive |
 | `toggle_answer_visibility` | Hide an answer from reports | write |
 
 ## Questions

@@ -178,7 +178,7 @@ The same configs as files are in [`clients/`](clients/), and every step with tro
 |---|---|
 | **Server** | `https://mcp.surveyninja.io/mcp/v1`, Streamable HTTP, nothing to deploy on your side |
 | **Sign-in** | **Allow access** (OAuth): one workspace you choose, the assistant renews access by itself. Or an **API key** from **Settings → API / MCP**: every workspace where you are the owner or a member |
-| **Tools** | 173+: 62 only read, 29 delete or overwrite data and are marked. [Full list](docs/tools.md) |
+| **Tools** | 173+: 63 only read, 72 delete or overwrite data and are marked. [Full list](docs/tools.md) |
 | **Permissions** | Yours: the assistant can do what your role and your plan allow, nothing more |
 | **Plans** | Every plan, Free included |
 | **Limits** | 180 requests per minute per user; links to exported files work for one hour |

@@ -68,7 +68,8 @@ Propose, do not act:
 
 Start with the first. For the next wave, the survey settings can limit one
 response per person and add a captcha or a password; mention it, do not change
-the settings without being asked.
+the settings without being asked. Connected with "Allow access", passwords and
+captcha keys are entered by the person in the app, not in the chat.
 
 ## What not to do
 

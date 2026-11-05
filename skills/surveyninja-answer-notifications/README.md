@@ -60,8 +60,8 @@
 | `get_quiz_integrations` | Quiz integration state | read |
 | `manage_quiz_messenger` | Telegram notifications | destructive |
 | `resend_integration_logs` | Resend to messenger | write |
-| `save_quiz_email_template` | Quiz email template | write |
-| `set_quiz_email_questions` | Questions included in the email | write |
+| `save_quiz_email_template` | Quiz email template | destructive |
+| `set_quiz_email_questions` | Questions included in the email | destructive |
 | `toggle_quiz_email` | Quiz emails on and off | write |
 | `toggle_quiz_email_recipient` | Recipient on and off | write |
 
