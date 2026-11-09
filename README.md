@@ -12,6 +12,7 @@
   <img alt="MCP: Streamable HTTP" src="https://img.shields.io/badge/MCP-Streamable%20HTTP-24292f?style=flat-square">
   <img alt="Free plan included" src="https://img.shields.io/badge/plans-Free%20included-24292f?style=flat-square">
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-24292f?style=flat-square"></a>
+  <a href="https://m8ven.ai/mcp/surveyninjaio-surveyninja-mcp-a7lzx4?s=readme"><img alt="M8ven verified" src="https://m8ven.ai/badge/mcp/surveyninjaio-surveyninja-mcp-a7lzx4?v=e5d24f4c4d26594034103f0869a392ba&variant=verified"></a>
 </p>
 
 The [SurveyNinja](https://surveyninja.io/?utm_source=github&utm_medium=readme&utm_campaign=mcp) MCP server and
